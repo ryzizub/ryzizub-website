@@ -1,0 +1,10 @@
+{
+  "names": {
+    "ryzizub": "c83723d33fa86c8f01b254b1dcaaa025b2ca659320950d044d22c41b5d1daf29"
+  },
+  "relays": {
+    "c83723d33fa86c8f01b254b1dcaaa025b2ca659320950d044d22c41b5d1daf29": [
+      "wss://relay.ryzizub.com"
+    ]
+  }
+}
