@@ -118,7 +118,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Ryzizub, Inc. Built with Docusaurus.`,
+        copyright: `© ${new Date().getFullYear()} Dominik Šimoník. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,
