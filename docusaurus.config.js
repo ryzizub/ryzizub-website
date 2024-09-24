@@ -95,12 +95,16 @@ const config = {
                 href: 'https://nostr.band/npub1eqmj85el4pkg7qdj2jcae24qykev5evnyz2s6pzdytzpkhga4u5sdmhexk',
               },
               {
-                label: 'X (Twitter)',
-                href: 'https://x.com/ryzizub',
-              },
-              {
                 label: 'LinkedIn',
                 href: 'https://www.linkedin.com/in/dominik-simonik/',
+              },
+              {
+                label: 'Mastodon',
+                href: 'https://mastodon.ryzizub.com',
+              },
+              {
+                label: 'Bsky',
+                href: 'https://bsky.app/profile/ryzizub.com',
               },
             ],
           },
