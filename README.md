@@ -1,25 +1,30 @@
-# Website
+# Ryzizub website
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+Astro portfolio website
 
-### Installation
+## Installation
 
-```
-$ yarn
-```
+#### Commands
 
-### Local Development
+All commands are run from the root of the project, from a terminal:
 
-```
-$ yarn start
-```
+| Command         | Action                                      |
+| :-------------- | :------------------------------------------ |
+| `npm install`   | Installs dependencies                       |
+| `npm run dev`   | Starts local dev server at `localhost:4321` |
+| `npm run build` | Build your production site to `./dist/`     |
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+## Tech Stack
 
-### Build
+**JAVASCRIPT FRAMEWORKS**
 
-```
-$ yarn build
-```
+- [Astro](https://astro.build/ "Astro")
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+**UI FRAMEWORKS**
+
+- [TailwindCSS](https://tailwindcss.com/ "TailwindCSS")
+- [daisyUI](https://daisyui.com/ "daisyUI")
+
+## Acknowledgments
+
+I want to thank [astro-cv-esquelete](https://github.com/mmouzo/astro-cv-esquelete/)

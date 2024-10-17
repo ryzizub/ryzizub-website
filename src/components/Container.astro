@@ -1,0 +1,32 @@
+---
+import AccordionLayout from "../layouts/AccordionLayout.astro";
+import * as about from "../pages/about/about.md";
+import ContactCard from "./ContactCard.astro";
+const contact = await Astro.glob("../pages/contact/*.md");
+---
+
+<div class="join join-vertical gap-1">
+
+  <AccordionLayout title={"About"} icon={"carbon:identification"}>
+    <article class="text-justify">
+      <Fragment set:html={about.compiledContent()} />
+    </article>
+  </AccordionLayout>
+
+  <AccordionLayout title={"Contact"} icon={"carbon:location-person"}>
+    <div class="flex flex-wrap content-around gap-4 justify-center">
+      {
+        contact.map((item) => {
+          return (
+              <ContactCard
+                url={item.frontmatter.url}
+                url_name={item.frontmatter.title}
+                icon={item.frontmatter.icon}
+              />
+          );
+        })
+      }
+    </div>
+  </AccordionLayout>
+
+</div>
