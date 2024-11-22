@@ -29,6 +29,22 @@ import { Icon } from "astro-icon/components";
     <title>Dominik Šimoník</title>
   </head>
   <body class="flex flex-col min-h-screen">
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-analytics.js";
+      const firebaseConfig = {
+        apiKey: "AIzaSyCyqGdH5kbTp5kkS8XOv5n1Iv9c_pBR3TQ",
+        authDomain: "ryzizub-com.firebaseapp.com",
+        projectId: "ryzizub-com",
+        storageBucket: "ryzizub-com.firebasestorage.app",
+        messagingSenderId: "808661532568",
+        appId: "1:808661532568:web:f9456dce6a7548514cb5ed",
+        measurementId: "G-XZFKVXX2P0"
+      };
+    
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    </script>
     <Header />
     <div
       class="flex items-center absolute top-4 right-4 md:top-6 md:right-6 lg:top-8 lg:right-8 xl:top-10 xl:right-10 z-10"
