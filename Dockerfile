@@ -19,6 +19,11 @@ RUN npm run build
 # Stage 2: Serve the application
 FROM nginx:alpine
 
+# Add build argument for commit hash
+ARG COMMIT_HASH
+# Add label with commit hash
+LABEL commit_hash=$COMMIT_HASH
+
 # Copy the build output from the previous stage
 COPY --from=build-stage /usr/src/app/dist /usr/share/nginx/html
 
