@@ -7,4 +7,7 @@ pronouns: "he/him"
 website: "http://ryzizub.com"
 ---
 
-Mobile app developer with a strong passion for creating seamless user experiences using Flutter. With over 7 years of experience in mobile application development, has worked with multiple companies, including his current role as a freelance software engineer at Very Good Ventures and his prior positions as Chief Technology Officer at Openvibe. As a Firebase Google Developer Expert, he actively contributes to the tech community by sharing his insights and helping others grow.
+With over eight years of experience in mobile app development, I’ve worked with both startups and established companies, delivering high-quality, seamless user experiences. Currently, I’m a Senior Engineer at Very Good Ventures, one of the most established companies in the Flutter ecosystem, where I specialize in Flutter app development for major clients like Google, Hamilton, and Toyota.
+As a Google Developer Expert for Firebase and an active Google Developer Group organizer, I’m deeply involved in the tech community. I love sharing my knowledge through mentoring, speaking at events, and organizing workshops.
+Throughout my career, I’ve taken on key leadership roles, including serving as CTO at Openvibe, and I’ve also contributed as a senior lecturer at Czechitas.
+Beyond development, I’m passionate about craft beer, gaming, and all things geeky.
