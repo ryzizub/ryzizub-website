@@ -1,5 +1,5 @@
 ---
 title: Bluesky
-icon: carbon:mostly-cloudy
+icon: ri:bluesky-fill
 url: https://bsky.app/profile/ryzizub.com
 ---

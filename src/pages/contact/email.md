@@ -1,5 +1,5 @@
 ---
 title: Email
-icon: carbon:send
+icon: ri:mail-fill
 url: mailto:dominik@simonik.me
 ---

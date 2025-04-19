@@ -11,7 +11,7 @@ const { timeframe, title, description, url, tags, url_name, location } =
         <h1 class="uppercase card-title font-extrabold tracking-tighter md:text-2xl">{title}</h1>
         {location && (
           <div class="flex items-center mt-2">
-            <Icon name="carbon:location" class="w-4 h-4 mr-1" />
+            <Icon name="ri:map-pin-2-fill" class="w-4 h-4 mr-1" />
             <p class="text-sm font-light text-secondary">{location}</p>
           </div>
         )}
@@ -43,7 +43,7 @@ const { timeframe, title, description, url, tags, url_name, location } =
       <div class="self-center justify-self-end">
         <a href={url} target="_blank" class="link link-hover text-sm text-right flex justify-center items-center">
           {url_name}
-          {url !== "#" && <Icon name="carbon:link" class="w-4 h-4 ml-2" />}
+          {url !== "#" && <Icon name="ri:link" class="w-4 h-4 ml-2" />}
         </a>
       </div>
     </div>

@@ -1,5 +1,5 @@
 ---
 title: Github
-icon: carbon:logo-github
+icon: ri:github-fill
 url: https://github.com/ryzizub
 ---

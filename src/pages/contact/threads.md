@@ -1,5 +1,5 @@
 ---
 title: Threads
-icon: carbon:logo-facebook
+icon: ri:threads-fill
 url: https://www.threads.net/@ryzizub
 ---

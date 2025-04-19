@@ -1,5 +1,5 @@
 ---
 title: Calendar
-icon: carbon:calendar
+icon: ri:calendar-fill
 url: https://calendar.notion.so/meet/ryzizub/hello
 ---

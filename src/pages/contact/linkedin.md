@@ -1,5 +1,5 @@
 ---
 title: Linkedin
-icon: carbon:logo-linkedin
+icon: ri:linkedin-box-fill
 url: https://www.linkedin.com/in/dominik-simonik/
 ---
