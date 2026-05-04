@@ -7,7 +7,7 @@ pronouns: "he/him"
 website: "http://ryzizub.com"
 ---
 
-With over eight years of experience in mobile app development, I’ve worked with both startups and established companies, delivering high-quality, seamless user experiences. Currently, I’m a Senior Engineer at Very Good Ventures, one of the most established companies in the Flutter ecosystem, where We specialize in Flutter app development for major clients like Google, Hamilton, and Toyota.
+With over eight years of experience in mobile app development, I’ve worked with both startups and established companies, delivering high-quality, seamless user experiences. Currently, I’m a Technical Delivery Lead at Very Good Ventures, one of the most established companies in the Flutter ecosystem, where We specialize in Flutter app development for major clients like Google, Hamilton, and Toyota.
 
 As a Google Developer Expert for Firebase & Flutter and an active Google Developer Group organizer, I’m deeply involved in the tech community. I love sharing my knowledge through mentoring, speaking at events, and organizing workshops.
 
