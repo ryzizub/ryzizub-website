@@ -1,5 +1,5 @@
 ---
 title: Nostr
 icon: ri:group-2-fill
-url: https://nostr.band/npub1eqmj85el4pkg7qdj2jcae24qykev5evnyz2s6pzdytzpkhga4u5sdmhexk
+url: https://primal.net/p/nprofile1qqsvsder6vl6smy0qxe9fvwu42sztvk2vkfjp9gdq3xj93qmt5w672gtfg93a
 ---
