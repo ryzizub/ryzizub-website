@@ -1,0 +1,106 @@
+---
+import { getCollection } from 'astro:content';
+import config from '../site.config';
+import CompassArt from './CompassArt.astro';
+import RefraneArt from './RefraneArt.astro';
+import SectionHead from './SectionHead.astro';
+
+const quests = (await getCollection('quests')).sort((a, b) => a.data.order - b.data.order).map((entry) => entry.data);
+const art = { refrane: RefraneArt, compass: CompassArt };
+const { title, intro } = config.sections.quests;
+---
+
+<section id="quests" class="sec w">
+	<SectionHead command="/side-quests" title={title} intro={intro} />
+	<ul class="qs">
+		{
+			quests.map((quest) => {
+				const Art = art[quest.art];
+				return (
+					<li class="qc">
+						<div class="qa">
+							<Art />
+						</div>
+						<span class:list={['st', quest.statusKind]}>
+							<i aria-hidden="true" />
+							{quest.status}
+						</span>
+						<h3>{quest.name}</h3>
+						<p>{quest.description}</p>
+						<span class="stk">{quest.stack.join(' · ')}</span>
+					</li>
+				);
+			})
+		}
+	</ul>
+</section>
+
+<style>
+	.qs {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 20px;
+	}
+
+	.qc {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 10px;
+		padding: 28px 28px 24px;
+		border: 1px solid var(--line);
+		border-radius: 22px;
+		background: var(--pan);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+	}
+
+	.qa {
+		display: grid;
+		place-items: center;
+		align-self: stretch;
+		height: 176px;
+		margin-bottom: 12px;
+		border-radius: 14px;
+		background-color: var(--low);
+		background-image: radial-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1.2px);
+		background-size: 14px 14px;
+		box-shadow: inset 0 0 0 1px var(--line);
+		overflow: hidden;
+	}
+
+	h3 {
+		margin-top: 12px;
+		font-size: 28px;
+		font-weight: 600;
+		letter-spacing: -0.03em;
+	}
+
+	p {
+		max-width: 28em;
+		font-size: 17px;
+		line-height: 1.5;
+		color: var(--soft);
+	}
+
+	.stk {
+		margin-top: auto;
+		padding-top: 14px;
+		font-family: var(--mono);
+		font-size: 13px;
+		color: var(--mut);
+	}
+
+	@container (max-width: 700px) {
+		.qs {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		.qc {
+			padding: 22px 20px 20px;
+		}
+
+		h3 {
+			font-size: 24px;
+		}
+	}
+</style>

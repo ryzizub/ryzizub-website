@@ -1,0 +1,47 @@
+[
+	{
+		"id": "mobile",
+		"order": 1,
+		"title": "Mobile apps",
+		"arg": "mobile apps",
+		"description": "Flutter apps for large clients at Very Good Ventures, and my own for fun.",
+		"hint": "Flutter",
+		"icon": "phone"
+	},
+	{
+		"id": "web",
+		"order": 2,
+		"title": "Websites",
+		"arg": "websites",
+		"description": "Like this one, built with Astro.",
+		"hint": "Astro",
+		"icon": "web"
+	},
+	{
+		"id": "backend",
+		"order": 3,
+		"title": "Backends",
+		"arg": "backends",
+		"description": "Node.js services and Google Cloud solutions behind the apps.",
+		"hint": "Node.js · GCP",
+		"icon": "server"
+	},
+	{
+		"id": "ai",
+		"order": 4,
+		"title": "AI tooling",
+		"arg": "AI tooling",
+		"description": "Open-source tooling that teaches coding agents a team's standards.",
+		"hint": "Open source",
+		"icon": "code"
+	},
+	{
+		"id": "whole",
+		"order": 5,
+		"title": "The whole solution",
+		"arg": "the whole solution",
+		"description": "Like DevFest.cz 2026: I built the website and the app on my own.",
+		"hint": "Idea to release",
+		"icon": "layers"
+	}
+]

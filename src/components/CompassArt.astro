@@ -1,0 +1,137 @@
+---
+// A compass whose needle sways, and two guide cards that fade out and back in
+// one after the other, like generated UI. Drawn, not a screenshot.
+const ticks = Array.from({ length: 12 }, (_, i) => {
+	const angle = (i * 30 * Math.PI) / 180;
+	const inner = i % 3 === 0 ? 47 : 51;
+	const point = (r: number) => [92 + r * Math.sin(angle), 80 - r * Math.cos(angle)].map((n) => n.toFixed(1));
+	const [x1, y1] = point(inner);
+	const [x2, y2] = point(56);
+	return { x1, y1, x2, y2 };
+});
+---
+
+<svg class="art" viewBox="0 0 320 160" aria-hidden="true">
+	<circle class="ring" cx="92" cy="80" r="62"></circle>
+	<circle class="ring2" cx="92" cy="80" r="43"></circle>
+	{ticks.map((t) => <line class="tick" x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2} />)}
+	<text class="nn" x="92" y="13" text-anchor="middle">N</text>
+	<g class="needle">
+		<path class="n-n" d="M92 48 L99 80 L85 80 Z"></path>
+		<path class="n-s" d="M85 80 L99 80 L92 112 Z"></path>
+	</g>
+	<circle class="hub" cx="92" cy="80" r="4"></circle>
+	<path class="wire" d="M156 80 C 168 80 166 53 178 53 M156 80 C 168 80 166 107 178 107"></path>
+	<g class="gen">
+		<rect class="card" x="178" y="30" width="126" height="46" rx="10"></rect>
+		<circle class="pin" cx="196" cy="53" r="5"></circle>
+		<rect class="ly" x="210" y="45" width="78" height="5" rx="2.5"></rect>
+		<rect class="ly" x="210" y="56" width="52" height="5" rx="2.5"></rect>
+	</g>
+	<g class="gen later">
+		<rect class="card" x="178" y="84" width="126" height="46" rx="10"></rect>
+		<path class="pin" d="M196 98 L203 113 L196 109.5 L189 113 Z"></path>
+		<rect class="ly" x="210" y="99" width="70" height="5" rx="2.5"></rect>
+		<rect class="ly" x="210" y="110" width="44" height="5" rx="2.5"></rect>
+	</g>
+</svg>
+
+<style>
+	.art {
+		width: 100%;
+		max-width: 330px;
+		height: auto;
+		overflow: visible;
+	}
+
+	.ring,
+	.card {
+		fill: var(--pan);
+		stroke: var(--edge);
+		stroke-width: 1.5;
+	}
+
+	.ring2 {
+		fill: none;
+		stroke: var(--line);
+		stroke-width: 1.5;
+	}
+
+	.tick {
+		stroke: var(--mut);
+		stroke-width: 1.5;
+		stroke-linecap: round;
+	}
+
+	.nn {
+		font-family: var(--mono);
+		font-size: 11px;
+		font-weight: 700;
+		fill: var(--acc);
+	}
+
+	.needle {
+		transform-box: view-box;
+		transform-origin: 92px 80px;
+		animation: compass-sway 5s ease-in-out infinite;
+	}
+
+	.n-n,
+	.pin {
+		fill: var(--acc);
+	}
+
+	.n-s {
+		fill: var(--edge);
+	}
+
+	.hub {
+		fill: var(--ink);
+	}
+
+	.ly {
+		fill: #2e333b;
+	}
+
+	.wire {
+		fill: none;
+		stroke: var(--edge);
+		stroke-width: 1.5;
+		stroke-dasharray: 3 4;
+	}
+
+	.gen {
+		animation: compass-generate 7s ease-in-out infinite backwards;
+	}
+
+	.later {
+		animation-delay: 0.8s;
+	}
+
+	@keyframes compass-sway {
+		0%,
+		100% {
+			transform: rotate(-16deg);
+		}
+		50% {
+			transform: rotate(14deg);
+		}
+	}
+
+	@keyframes compass-generate {
+		0%,
+		70% {
+			opacity: 1;
+			transform: none;
+		}
+		80%,
+		88% {
+			opacity: 0;
+			transform: translateY(6px);
+		}
+		100% {
+			opacity: 1;
+			transform: none;
+		}
+	}
+</style>

@@ -1,0 +1,285 @@
+---
+import { getCollection } from 'astro:content';
+import config from '../site.config';
+import { asset } from '../lib/assets';
+import type { IconName } from '../lib/icons';
+import Icon from './Icon';
+import SectionHead from './SectionHead.astro';
+
+const talks = (await getCollection('talks')).sort((a, b) => a.data.order - b.data.order).map((entry) => entry.data);
+const { title, intro } = config.sections.talks;
+const { countries, stages } = config.speaking;
+const kinds: Record<'talk' | 'video' | 'article', { icon: IconName; label: string }> = {
+	talk: { icon: 'mic', label: 'Talk' },
+	video: { icon: 'play', label: 'Video' },
+	article: { icon: 'doc', label: 'Article' },
+};
+---
+
+<section id="talks" class="sec w">
+	<SectionHead command="/talks" title={title} intro={intro} />
+	<div class="tg">
+		{
+			talks.map((talk) => {
+				const logo = asset(talk.logo);
+				const Tag = talk.href ? 'a' : 'div';
+				return (
+					<Tag class="tc" href={talk.href}>
+						<span class="pv" aria-hidden="true">
+							<img
+								class:list={{ mono: talk.logoMono }}
+								src={logo.src}
+								height={talk.logoHeight}
+								width={Math.round((talk.logoHeight * logo.width) / logo.height)}
+								alt=""
+								loading="lazy"
+								decoding="async"
+							/>
+							{talk.logoText && <span class="pvt">{talk.logoText}</span>}
+							{talk.kind === 'video' && (
+								<i class="pl">
+									<Icon name="play" />
+								</i>
+							)}
+						</span>
+						<span class="ey">
+							<Icon name={kinds[talk.kind].icon} />
+							<span>{talk.meta}</span>
+						</span>
+						<span class="sr">{kinds[talk.kind].label}: </span>
+						<b>{talk.title}</b>
+						<em>{talk.note}</em>
+						{talk.href && (
+							<span class="go" aria-hidden="true">
+								<Icon name="arrow" />
+							</span>
+						)}
+					</Tag>
+				);
+			})
+		}
+		<div class="nx">
+			<span class="st"><i aria-hidden="true"></i>on stage</span>
+			<h3>In person in {countries.length} countries</h3>
+			<ul class="cty" aria-label="Countries">
+				{countries.map((country) => <li>{country}</li>)}
+			</ul>
+			<p class="ev">Stages include {stages}</p>
+			<a class="btn" href={`mailto:${config.person.email}`}>Invite me to speak<span class="key" aria-hidden="true"><Icon name="enter" /></span></a>
+		</div>
+	</div>
+</section>
+
+<style>
+	.tg {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 20px;
+	}
+
+	.tc {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		min-height: 210px;
+		padding: 22px 22px 20px;
+		border: 1px solid var(--line);
+		border-radius: 22px;
+		background: var(--pan);
+		color: var(--ink);
+		overflow: hidden;
+		transition:
+			background-color 0.18s,
+			border-color 0.18s,
+			transform 0.25s cubic-bezier(0.2, 1, 0.3, 1);
+	}
+
+	a.tc:hover {
+		border-color: var(--edge);
+		background: #1c2026;
+		color: var(--ink);
+		transform: translateY(-2px);
+	}
+
+	/* The preview: the logo of the event or publisher, white on the same dark surface for all. */
+	.pv {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		height: 118px;
+		margin: -22px -22px 16px;
+		border-bottom: 1px solid var(--line);
+		background: var(--low);
+	}
+
+	.pv img {
+		width: auto;
+		max-width: 72%;
+		transition: transform 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+	}
+
+	.pv img.mono {
+		filter: brightness(0) invert(1);
+		opacity: 0.88;
+	}
+
+	a.tc:hover .pv img {
+		transform: scale(1.04);
+	}
+
+	.pvt {
+		font-size: 22px;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+	}
+
+	.pl {
+		position: absolute;
+		right: 12px;
+		bottom: 12px;
+		display: grid;
+		place-items: center;
+		width: 34px;
+		height: 34px;
+		border-radius: 50%;
+		background: var(--acc);
+		color: var(--dark);
+	}
+
+	.pl :global(svg) {
+		width: 15px;
+		height: 15px;
+		margin-left: 2px;
+		fill: currentColor;
+		stroke: none;
+	}
+
+	.ey {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin-bottom: 10px;
+		font-family: var(--mono);
+		font-size: 12.5px;
+		font-variant-numeric: tabular-nums;
+		color: var(--mut);
+	}
+
+	.ey :global(svg) {
+		width: 16px;
+		height: 16px;
+	}
+
+	.tc b {
+		font-size: 18px;
+		font-weight: 600;
+		line-height: 1.3;
+		letter-spacing: -0.01em;
+	}
+
+	.tc em {
+		font-size: 14.5px;
+		font-style: normal;
+		line-height: 1.4;
+		color: var(--mut);
+	}
+
+	.tc .go {
+		margin-top: auto;
+		padding-top: 10px;
+		align-self: flex-end;
+	}
+
+	a.tc:hover .go {
+		color: var(--acc);
+		transform: translateX(3px);
+	}
+
+	/* The speaking card closes the grid across two columns. */
+	.nx {
+		grid-column: span 2;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 24px 26px 28px;
+		border: 1px solid var(--acc);
+		border-radius: 22px;
+		background: var(--pan);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+	}
+
+	.nx .st {
+		color: var(--acc);
+	}
+
+	.nx h3 {
+		margin-top: 26px;
+		font-size: clamp(24px, 2.4cqw, 30px);
+		font-weight: 600;
+		line-height: 1.15;
+		letter-spacing: -0.02em;
+	}
+
+	.cty {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+		margin-top: 18px;
+	}
+
+	.cty li {
+		padding: 4px 10px;
+		border: 1px solid var(--line);
+		border-radius: 999px;
+		font-family: var(--mono);
+		font-size: 12.5px;
+		color: var(--soft);
+	}
+
+	.ev {
+		margin: 18px 0 26px;
+		font-size: 16px;
+		color: var(--mut);
+	}
+
+	.nx .btn {
+		margin-top: auto;
+	}
+
+	@container (max-width: 900px) {
+		.tg {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.nx {
+			grid-column: auto;
+		}
+	}
+
+	@container (max-width: 560px) {
+		.tg {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		.tc {
+			min-height: 0;
+		}
+
+		.pv {
+			height: 84px;
+		}
+	}
+
+	@container (max-width: 520px) {
+		.ey {
+			font-size: 13px;
+		}
+
+		.nx .btn {
+			display: flex;
+			align-self: stretch;
+		}
+	}
+</style>

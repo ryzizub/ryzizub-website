@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content';
+import config from '../site.config';
+import { imageData } from '../lib/assets';
+import AppLauncher from './AppLauncher';
+import SectionHead from './SectionHead.astro';
+
+const apps = (await getCollection('apps'))
+	.sort((a, b) => a.data.order - b.data.order)
+	.map(({ data: { icon, order: _order, ...app } }) => ({ ...app, image: imageData(icon) }));
+const { title, intro } = config.sections.apps;
+---
+
+<section id="apps" class="sec w">
+	<SectionHead command="/apps" title={title} intro={intro} />
+	<AppLauncher client:visible apps={apps} />
+</section>

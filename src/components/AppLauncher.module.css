@@ -1,0 +1,157 @@
+.launch {
+	display: grid;
+	grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+	border: 1px solid var(--line);
+	border-radius: 22px;
+	background: var(--pan);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+	overflow: hidden;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	align-content: start;
+	gap: 6px;
+	padding: 14px;
+}
+
+.tile {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+	min-width: 0;
+	padding: 20px 8px 16px;
+	border: 0;
+	border-radius: 16px;
+	background: none;
+	text-align: center;
+	transition: background-color 0.18s;
+}
+
+.tile:hover {
+	background: #1c2026;
+}
+
+.tile.on {
+	background: var(--hi);
+	box-shadow: inset 0 0 0 1px #343a44;
+}
+
+.tileIcon {
+	width: 72px;
+	height: 72px;
+	margin-bottom: 8px;
+	border-radius: 22%;
+}
+
+.tile b {
+	font-size: 15.5px;
+	font-weight: 600;
+	letter-spacing: -0.02em;
+}
+
+.tile small {
+	font-family: var(--mono);
+	font-size: 12.5px;
+	font-variant-numeric: tabular-nums;
+	color: var(--mut);
+}
+
+.tile.on small {
+	color: var(--soft);
+}
+
+.detail {
+	padding: 32px;
+	border-left: 1px solid var(--line);
+	background: var(--low);
+}
+
+.card {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.card[hidden] {
+	display: none;
+}
+
+.cardIcon {
+	width: 96px;
+	height: 96px;
+	border-radius: 22%;
+}
+
+.card h3 {
+	margin-top: 22px;
+	font-size: 28px;
+	font-weight: 600;
+	letter-spacing: -0.03em;
+}
+
+.when {
+	margin-top: 4px;
+	font-family: var(--mono);
+	font-size: 14px;
+	font-variant-numeric: tabular-nums;
+	color: var(--soft);
+}
+
+.say {
+	max-width: 26em;
+	margin-top: 16px;
+	font-size: 18px;
+	line-height: 1.5;
+	color: var(--soft);
+}
+
+.nda {
+	margin-top: 18px;
+}
+
+@container (max-width: 760px) {
+	.launch {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.grid {
+		gap: 4px;
+		padding: 8px;
+	}
+
+	.tile {
+		padding: 14px 4px 12px;
+	}
+
+	.tileIcon {
+		width: 56px;
+		height: 56px;
+	}
+
+	.tile b {
+		font-size: 13.5px;
+	}
+
+	.detail {
+		padding: 22px 18px 24px;
+		border-left: 0;
+		border-top: 1px solid var(--line);
+	}
+
+	.cardIcon {
+		width: 64px;
+		height: 64px;
+	}
+
+	.card h3 {
+		margin-top: 14px;
+		font-size: 22px;
+	}
+
+	.say {
+		font-size: 16.5px;
+	}
+}

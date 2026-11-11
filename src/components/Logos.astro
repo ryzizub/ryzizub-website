@@ -1,0 +1,97 @@
+---
+import { getCollection } from 'astro:content';
+import { asset } from '../lib/assets';
+
+const logos = (await getCollection('logos')).sort((a, b) => a.data.order - b.data.order).map((entry) => entry.data);
+---
+
+<div class="logos w">
+	<p class="label"><span class="o">#</span> teams, communities and stages</p>
+	<ul class="lgs" aria-label="Teams, communities and stages">
+		{
+			logos.map((logo) => {
+				const image = asset(logo.file);
+				return (
+					<li class="lg">
+						<img
+							class:list={{ mono: logo.mono }}
+							src={image.src}
+							height={logo.height}
+							width={Math.round((logo.height * image.width) / image.height)}
+							alt={logo.text ? '' : logo.name}
+							loading="lazy"
+							decoding="async"
+						/>
+						{logo.text && <b>{logo.text}</b>}
+					</li>
+				);
+			})
+		}
+	</ul>
+</div>
+
+<style>
+	.logos {
+		margin-top: clamp(56px, 6cqw, 80px);
+	}
+
+	.label {
+		margin-bottom: 14px;
+		font-family: var(--mono);
+		font-size: 13.5px;
+		color: var(--mut);
+	}
+
+	.lgs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+	}
+
+	/* Every logo on the same dark chip; logos drawn for light backgrounds are shown in white. */
+	.lg {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		height: 52px;
+		padding: 0 18px;
+		border-radius: 14px;
+		background: var(--pan);
+		box-shadow: inset 0 0 0 1px var(--line);
+	}
+
+	.lg img {
+		width: auto;
+	}
+
+	.lg img.mono {
+		filter: brightness(0) invert(1);
+		opacity: 0.88;
+	}
+
+	.lg b {
+		font-size: 17px;
+		font-weight: 600;
+		white-space: nowrap;
+	}
+
+	@container (max-width: 520px) {
+		.lgs {
+			gap: 8px;
+		}
+
+		.lg {
+			height: 44px;
+			padding: 0 12px;
+		}
+
+		.lg img {
+			max-height: 20px;
+		}
+
+		.lg b {
+			font-size: 15px;
+		}
+	}
+</style>

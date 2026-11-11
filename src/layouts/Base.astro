@@ -1,0 +1,60 @@
+---
+import { Font } from 'astro:assets';
+import config from '../site.config';
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title = config.site.title, description = config.site.description } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, config.site.url).href.replace(/\/$/, '') || config.site.url;
+
+const person = {
+	'@context': 'https://schema.org',
+	'@type': 'Person',
+	name: config.person.name,
+	alternateName: config.person.handle,
+	url: config.site.url,
+	email: `mailto:${config.person.email}`,
+	jobTitle: config.person.role,
+	worksFor: { '@type': 'Organization', name: config.person.company },
+	address: { '@type': 'PostalAddress', addressLocality: config.person.city, addressCountry: 'CZ' },
+	sameAs: config.links.map((link) => link.href),
+};
+---
+
+<!doctype html>
+<html lang={config.site.locale}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonical} />
+		<link rel="icon" href="/favicon.ico" sizes="any" />
+		<link rel="me" href={config.mastodon} />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="theme-color" content="#0f1114" />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={config.person.name} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content={`@${config.person.handle}`} />
+		<Font cssVariable="--font-mono" preload />
+		<Font cssVariable="--font-sans" preload />
+		<script type="application/ld+json" set:html={JSON.stringify(person)} />
+		<!-- Interactive parts hide their extra panels only when the script that switches them can run. -->
+		<script is:inline>document.documentElement.classList.add('js');</script>
+	</head>
+	<body>
+		<a class="skip" href="#main">Skip to content</a>
+		<div id="top" class="pg">
+			<slot />
+		</div>
+	</body>
+</html>

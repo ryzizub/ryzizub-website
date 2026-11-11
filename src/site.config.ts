@@ -1,0 +1,67 @@
+/**
+ * Every fact the site states more than once. Components read from here;
+ * copy never repeats a value this file holds. Lists of things (what he builds,
+ * apps, side quests, talks, logos) live in src/content/*.json.
+ */
+const config = {
+	person: {
+		name: 'Dominik Šimoník',
+		handle: 'ryzizub',
+		/** The positioning line above the palette. */
+		headline: 'Mobile developer who ships.',
+		role: 'Technical Delivery Lead',
+		company: 'Very Good Ventures',
+		city: 'Prague',
+		email: 'dominik@simonik.me',
+		/** Approved public claim. Never an exact talk count. */
+		talks: '50+',
+	},
+	site: {
+		url: 'https://ryzizub.com',
+		title: 'Dominik Šimoník · Mobile developer who ships',
+		description:
+			'Technical Delivery Lead at Very Good Ventures, Flutter & Firebase GDE, DevFest.cz organizer and a speaker with 50+ talks. Mobile apps, websites, backends and AI tooling.',
+		locale: 'en',
+	},
+	/** In the order the contact block lists them. */
+	links: [
+		{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/dominik-simonik/' },
+		{ label: 'GitHub', href: 'https://github.com/ryzizub' },
+		{ label: 'X', href: 'https://x.com/ryzizub' },
+		{ label: 'Nostr', href: 'https://primal.net/p/nprofile1qqsvsder6vl6smy0qxe9fvwu42sztvk2vkfjp9gdq3xj93qmt5w672gtfg93a' },
+		{ label: 'Instagram', href: 'https://www.instagram.com/ryzizub/' },
+	],
+	mastodon: 'https://mastodon.ryzizub.com/@ryzizub',
+	/** Sections, written like the commands that open them. */
+	nav: [
+		{ label: '/apps', href: '#apps' },
+		{ label: '/side-quests', href: '#quests' },
+		{ label: '/talks', href: '#talks' },
+		{ label: '/contact', href: '#contact' },
+	],
+	sections: {
+		apps: {
+			title: 'Shipped apps.',
+			intro: "Mobile apps I've built as CTO, co-founder and volunteer, and for clients at Very Good Ventures.",
+		},
+		quests: {
+			title: 'Running after hours.',
+			intro: 'In my free time I build my own apps and odd experiments, because building something is the fastest way I know to learn it.',
+		},
+		talks: {
+			title: 'Talks and articles.',
+			intro: '50+ talks on Flutter, Firebase and AI agents, and the write-ups that go with them.',
+		},
+		contact: {
+			title: 'Building something? Say hi',
+		},
+	},
+	speaking: {
+		/** In person, from the GDE activity export (Identity page, section 8c). */
+		countries: ['Czechia', 'Germany', 'USA', 'Italy', 'Croatia', 'Poland', 'Morocco'],
+		stages: 'FlutterCon USA, FlutterCon Europe, mDevCamp, DevFest.cz and DevFests in Casablanca, Pisa, Zagreb and Gela.',
+	},
+} as const;
+
+export type SiteConfig = typeof config;
+export default config;

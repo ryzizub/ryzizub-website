@@ -1,12 +1,44 @@
 ---
-const getYear = () => new Date().getFullYear().toString();
+import config from '../site.config';
+import Icon from './Icon';
+
+const year = new Date().getFullYear();
 ---
 
-<footer
-  class="flex justify-center items-center bg-transparent py-4"
->
-  <p class="flex items-center text-center font-light text-sm text-secondary">
-    &copy; {getYear()} developed by
-    <a target="_blank" class="link ml-1" href="https://github.com/ryzizub">Dominik Šimoník</a>
-  </p>
+<footer class="foot w">
+	<span>© {year} {config.person.name} · {config.person.city}</span>
+	<a href="#top">Back to top<Icon name="up" /></a>
 </footer>
+
+<style>
+	.foot {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 4px 24px;
+		padding-top: 60px;
+		padding-bottom: 40px;
+		font-family: var(--mono);
+		font-size: 13.5px;
+		color: var(--mut);
+	}
+
+	a {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		min-height: 44px;
+		color: var(--ink);
+	}
+
+	a:hover {
+		color: var(--acc);
+	}
+
+	a :global(svg) {
+		width: 15px;
+		height: 15px;
+		stroke-width: 2;
+	}
+</style>

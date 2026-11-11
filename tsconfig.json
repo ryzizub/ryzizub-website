@@ -1,5 +1,26 @@
 {
-  "extends": "astro/tsconfigs/base",
-  "include": [".astro/types.d.ts", "**/*"],
+  // Astro's "strict" preset written out in full instead of `"extends": "astro/tsconfigs/strict"`.
+  // Agent worktrees live inside the main checkout (.claude/worktrees/), and Vite also reads
+  // this file from there; an `extends` into node_modules fails when that checkout has no
+  // node_modules installed. Keep it in step with node_modules/astro/tsconfigs/{base,strict}.json.
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "strict": true,
+    // React islands.
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  },
+  "include": [".astro/types.d.ts", "src/**/*", "scripts/**/*", "astro.config.ts", "eslint.config.ts"],
   "exclude": ["dist"]
 }

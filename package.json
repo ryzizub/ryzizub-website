@@ -1,27 +1,40 @@
 {
   "name": "ryzizub-website",
+  "private": true,
   "type": "module",
   "version": "0.0.1",
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check": "astro check",
+    "lint": "eslint src scripts astro.config.ts eslint.config.ts",
+    "literals": "node scripts/literals.ts",
+    "a11y": "node scripts/a11y.ts",
+    "verify": "npm run check && npm run lint && npm run literals && npm run build && npm run a11y"
   },
   "dependencies": {
-    "@astrojs/tailwind": "^5.1.0",
-    "@fontsource-variable/dm-sans": "^5.0.5",
-    "@iconify-json/ri": "^1.2.5",
-    "astro": "^4.5.14",
-    "astro-compress": "^2.2.21",
-    "astro-icon": "^1.1.0",
-    "framer-motion": "^11.0.7",
-    "tailwindcss": "^3.4.3",
-    "theme-change": "^2.5.0"
+    "@astrojs/react": "^7.1.8",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.4.7",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.10",
-    "daisyui": "^4.9.0"
+    "@astrojs/check": "^0.9.12",
+    "@axe-core/playwright": "^4.14.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^10.14.0",
+    "eslint-plugin-astro": "^1.7.0",
+    "eslint-plugin-sonarjs": "^4.2.2",
+    "jiti": "^2.7.0",
+    "playwright": "^1.65.0",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.72.2"
   }
 }

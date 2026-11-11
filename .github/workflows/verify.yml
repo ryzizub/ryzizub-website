@@ -1,0 +1,87 @@
+name: Verify
+
+# Every PR and every push to main: the site checks, then the Docker image
+# that production runs, built and probed.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+# A newer push to the same PR supersedes the running check.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  site:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - id: install
+        run: npm ci
+
+      # Each check runs even when the one before it failed, so one red run
+      # names every failing check.
+      - name: astro check
+        run: npm run check
+
+      - name: Cognitive complexity
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: npm run lint
+
+      - name: No site fact typed outside the site config
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: npm run literals
+
+      - id: build
+        name: Build
+        if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+        run: npm run build
+
+      - name: Install Chromium
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        run: npx playwright install --with-deps chromium
+
+      - name: Accessibility (axe, WCAG 2.2 AA)
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        run: npm run a11y
+
+  docker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+
+      - name: Build the image
+        run: docker build --tag ryzizub-website .
+
+      - name: Run it
+        run: |
+          docker run --detach --name site --publish 8480:80 ryzizub-website
+          for attempt in $(seq 1 20); do
+            curl --fail --silent http://localhost:8480/ > /dev/null && exit 0
+            sleep 1
+          done
+          docker logs site
+          exit 1
+
+      - name: The page, the 404 page, caching and headers
+        run: |
+          set -eu
+          base=http://localhost:8480
+          curl --fail --silent --show-error "$base/" | grep --quiet '/build'
+          test "$(curl --silent --output /dev/null --write-out '%{http_code}' "$base/no-such-page")" = 404
+          curl --silent "$base/no-such-page" | grep --quiet '/404'
+          curl --silent --head "$base/" | grep --quiet --ignore-case '^x-content-type-options: nosniff'
+          asset=$(curl --fail --silent "$base/" | grep --only-matching '/_astro/[^"]*\.css' | head -n 1)
+          curl --silent --head "$base$asset" | grep --quiet --ignore-case '^cache-control: max-age=31536000'

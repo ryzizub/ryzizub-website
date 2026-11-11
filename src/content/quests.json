@@ -1,0 +1,22 @@
+[
+	{
+		"id": "refrane",
+		"order": 1,
+		"name": "Refrane",
+		"status": "in development",
+		"statusKind": "live",
+		"description": "ChordPro songbook for live performance. Follow Mode keeps the band in sync over Bluetooth, offline.",
+		"stack": ["Flutter", "BLE", "ChordPro"],
+		"art": "refrane"
+	},
+	{
+		"id": "path-compass",
+		"order": 2,
+		"name": "Path Compass",
+		"status": "MVP built",
+		"statusKind": "proto",
+		"description": "Reads where you stand and generates a guide with a live compass. GenUI beyond chat.",
+		"stack": ["Flutter", "Dart Genkit", "Cloud Run"],
+		"art": "compass"
+	}
+]

@@ -400,3 +400,10 @@ FodyWeavers.xsd
 # Build folder
 dist
 build
+# astro
+.astro/
+
+# Claude Code: local settings, agent worktrees, local backups
+.claude/settings.local.json
+.claude/worktrees/
+.claude/backup/

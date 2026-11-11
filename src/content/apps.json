@@ -1,0 +1,60 @@
+[
+	{
+		"id": "devfest",
+		"order": 1,
+		"name": "DevFest.cz app",
+		"description": "Conference app for DevFest.cz 2026. I built it on my own, as part of the volunteer organizing team.",
+		"role": "Organizer",
+		"years": "2026",
+		"icon": "devfest.png",
+		"padded": true,
+		"dark": true
+	},
+	{
+		"id": "clients",
+		"order": 2,
+		"name": "Client apps",
+		"description": "Flutter apps for clients of Very Good Ventures, Dutch Bros and Divine among them.",
+		"role": "Very Good Ventures",
+		"years": "2024 – now",
+		"icon": "vgv-mark.svg",
+		"padded": true,
+		"nda": true
+	},
+	{
+		"id": "openvibe",
+		"order": 3,
+		"name": "Openvibe",
+		"description": "Mastodon, Bluesky, Nostr and Threads in one app.",
+		"role": "CTO",
+		"years": "2023 – 2024",
+		"icon": "openvibe.png"
+	},
+	{
+		"id": "plebstr",
+		"order": 4,
+		"name": "Plebstr",
+		"description": "A friendly Nostr client, built at Tweetoshi.",
+		"role": "CTO",
+		"years": "2022 – 2024",
+		"icon": "plebstr.png"
+	},
+	{
+		"id": "tweetoshi",
+		"order": 5,
+		"name": "Tweetoshi",
+		"description": "Get paid in Bitcoin for using Twitter.",
+		"role": "CTO",
+		"years": "2022 – 2024",
+		"icon": "tweetoshi.png"
+	},
+	{
+		"id": "yadada",
+		"order": 6,
+		"name": "yadada",
+		"description": "Practice speaking English with virtual people.",
+		"role": "Co-founder",
+		"years": "2020 – 2022",
+		"icon": "yadada.png"
+	}
+]

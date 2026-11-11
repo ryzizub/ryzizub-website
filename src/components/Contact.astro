@@ -1,0 +1,117 @@
+---
+import config from '../site.config';
+import Icon from './Icon';
+
+const { person, links } = config;
+const mailto = `mailto:${person.email}`;
+---
+
+<section id="contact" class="sec w" aria-labelledby="contact-title">
+	<div class="pal">
+		<p class="in sm" aria-hidden="true">
+			<span class="in-v">
+				<Icon name="chevron" className="pr" />
+				<span class="cmd">/contact</span>
+				<span class="ln2"><i class="caret"></i></span>
+			</span>
+		</p>
+		<div class="ct">
+			<h2 id="contact-title">{config.sections.contact.title}<span class="o">.</span></h2>
+			<div class="act">
+				<a class="btn" href={mailto}>Contact me<span class="key" aria-hidden="true"><Icon name="enter" /></span></a>
+				<a class="mail" href={mailto}>{person.email}</a>
+			</div>
+		</div>
+		<div class="pal-f">
+			<ul class="cmds">
+				{
+					links.map((link) => (
+						<li>
+							<a href={link.href} rel="me noopener">
+								{link.label} ↗
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</div>
+</section>
+
+<style>
+	.in.sm {
+		padding: 22px 32px 20px;
+		font-size: clamp(20px, 3.1cqw, 32px);
+	}
+
+	.in.sm .ln2 {
+		margin-left: 0.22em;
+	}
+
+	.ct {
+		padding: 36px 32px 40px;
+		border-top: 1px solid var(--line);
+	}
+
+	h2 {
+		font-size: clamp(32px, 4cqw, 50px);
+		font-weight: 600;
+		line-height: 1.08;
+		letter-spacing: -0.03em;
+	}
+
+	.act {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 12px 26px;
+		margin-top: 30px;
+	}
+
+	.mail {
+		display: inline-flex;
+		align-items: center;
+		min-height: 44px;
+		font-family: var(--mono);
+		font-size: 16px;
+		color: var(--ink);
+		text-decoration: underline;
+		text-decoration-color: var(--edge);
+		text-underline-offset: 5px;
+	}
+
+	.mail:hover {
+		color: var(--acc);
+		text-decoration-color: var(--acc);
+	}
+
+	.pal-f {
+		padding: 14px 20px;
+		border-top: 1px solid var(--line);
+		background: var(--low);
+	}
+
+	.pal-f .cmds {
+		margin: 0;
+	}
+
+	@container (max-width: 700px) {
+		.in.sm {
+			padding: 20px 18px 18px;
+		}
+
+		.ct {
+			padding: 28px 18px 30px;
+		}
+
+		.pal-f {
+			padding: 12px;
+		}
+	}
+
+	@container (max-width: 520px) {
+		.act .btn {
+			flex: 1 1 100%;
+		}
+	}
+</style>

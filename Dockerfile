@@ -1,5 +1,5 @@
 # Stage 1: Build the application
-FROM node:18 as build-stage
+FROM node:24 AS build-stage
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install any necessary dependencies
-RUN npm install
+RUN npm ci
 
 # Copy the rest of your application's source code
 COPY . .

@@ -1,0 +1,14 @@
+# The image installs its own dependencies (npm ci) and builds dist itself.
+node_modules
+dist
+.astro
+build
+web
+
+# Local tooling and editor state.
+.git
+.claude
+.dart_tool
+.impeccable
+.vscode
+*.log

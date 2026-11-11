@@ -1,0 +1,13 @@
+[
+	{ "id": "vgv", "order": 1, "name": "Very Good Ventures", "file": "vgv-logo.svg", "height": 32 },
+	{ "id": "flutter", "order": 2, "name": "Flutter", "file": "flutter.svg", "height": 24, "mono": true },
+	{ "id": "gde", "order": 3, "name": "Google Developer Experts", "file": "gde.svg", "height": 18 },
+	{ "id": "firebase", "order": 4, "name": "Firebase", "file": "firebase.svg", "height": 26, "mono": true },
+	{ "id": "devfest", "order": 5, "name": "DevFest.cz", "file": "devfest-white.svg", "height": 18 },
+	{ "id": "gug", "order": 6, "name": "GUG.cz", "file": "gug.svg", "height": 22, "mono": true },
+	{ "id": "gdg", "order": 7, "name": "Google Developer Groups", "file": "gdg.png", "height": 16 },
+	{ "id": "fluttercon", "order": 8, "name": "FlutterCon", "file": "fluttercon.png", "height": 21, "mono": true },
+	{ "id": "mdevcamp", "order": 9, "name": "mDevCamp", "file": "mdevcamp.svg", "height": 19, "text": "mDevCamp" },
+	{ "id": "czechitas", "order": 10, "name": "Czechitas", "file": "czechitas.svg", "height": 29, "mono": true },
+	{ "id": "ceskodigital", "order": 11, "name": "Česko.Digital", "file": "ceskodigital.svg", "height": 26 }
+]

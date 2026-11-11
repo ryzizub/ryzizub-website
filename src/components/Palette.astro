@@ -1,0 +1,20 @@
+---
+import { getCollection } from 'astro:content';
+import config from '../site.config';
+import BuildPalette from './BuildPalette';
+
+const builds = (await getCollection('builds')).sort((a, b) => a.data.order - b.data.order).map(({ data }) => data);
+---
+
+<p class="lead"><span class="o">#</span> {config.person.headline}</p>
+<BuildPalette client:load builds={builds} contactHref={`mailto:${config.person.email}`} />
+
+<style>
+	.lead {
+		margin: 0 0 20px;
+		padding-left: 4px;
+		font-family: var(--mono);
+		font-size: 19px;
+		color: var(--soft);
+	}
+</style>

@@ -1,0 +1,82 @@
+[
+	{
+		"id": "ai-printer-go-brrr",
+		"order": 1,
+		"kind": "talk",
+		"title": "AI Printer go brrr",
+		"note": "With Denis Valášek, about the AI sticker printer he built",
+		"meta": "DevFest.cz · 30 Oct 2026",
+		"href": "https://devfest.cz/talks/1294033",
+		"logo": "devfest-white.svg",
+		"logoHeight": 30
+	},
+	{
+		"id": "best-practices-on-autopilot",
+		"order": 2,
+		"kind": "talk",
+		"title": "Best Practices on Autopilot: How the Very Good AI Flutter Plugin Makes AI Write Code Your Way",
+		"note": "With Rui Alonso and Jorge Coca",
+		"meta": "FlutterCon Europe · 8 Oct 2026",
+		"logo": "fluttercon.png",
+		"logoHeight": 38,
+		"logoMono": true
+	},
+	{
+		"id": "flutter-pigeon",
+		"order": 3,
+		"kind": "article",
+		"title": "Flutter Pigeon: Type-Safe Platform Channels in Production",
+		"note": "On the Very Good Ventures blog",
+		"meta": "Article · 23 Jul 2026",
+		"href": "https://verygood.ventures/blog/flutter-pigeon-type-safe-platform-channels/",
+		"logo": "vgv-logo.svg",
+		"logoHeight": 56
+	},
+	{
+		"id": "viral-video-feed",
+		"order": 4,
+		"kind": "talk",
+		"title": "Building a Production Viral Video Feed in Flutter",
+		"note": "With Hugo Walbecq",
+		"meta": "FlutterCon USA · 16 Jul 2026",
+		"logo": "fluttercon.png",
+		"logoHeight": 38,
+		"logoMono": true
+	},
+	{
+		"id": "observable-flutter-92",
+		"order": 5,
+		"kind": "video",
+		"title": "VGV's AI toolkit",
+		"note": "Observable Flutter #92, with Oscar Martin, hosted by Craig Labenz",
+		"meta": "YouTube · 10 Jul 2026",
+		"href": "https://www.youtube.com/live/zhiK0YLLIp0",
+		"logo": "flutter.svg",
+		"logoHeight": 42,
+		"logoMono": true
+	},
+	{
+		"id": "rag-genkit-firebase",
+		"order": 6,
+		"kind": "article",
+		"title": "Set up RAG with Genkit and Firebase in 15 minutes",
+		"note": "With Denis Valášek, on dev.to",
+		"meta": "Article · 3 Nov 2025",
+		"href": "https://dev.to/denisvalasek/set-up-rag-with-genkit-and-firebase-in-15-minutes-50b2",
+		"logo": "firebase.svg",
+		"logoHeight": 44,
+		"logoMono": true
+	},
+	{
+		"id": "scrollviews",
+		"order": 7,
+		"kind": "talk",
+		"title": "Under the Hood of ScrollViews",
+		"note": "FlutterCon Europe and mDevCamp",
+		"meta": "2025",
+		"href": "https://www.fluttercon.dev/speakers/dominik-%C5%A1imon%C3%ADk",
+		"logo": "mdevcamp.svg",
+		"logoHeight": 34,
+		"logoText": "mDevCamp"
+	}
+]

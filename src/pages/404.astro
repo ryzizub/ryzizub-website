@@ -1,0 +1,67 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Icon from '../components/Icon';
+import config from '../site.config';
+---
+
+<Base title={`Not found · ${config.person.name}`} description="This page does not exist.">
+	<Header />
+	<main id="main" class="w" tabindex="-1">
+		<div class="pal">
+			<h1 class="in">
+				<span class="in-v">
+					<Icon name="chevron" className="pr" />
+					<span class="cmd">/404</span>
+					<span class="ln2">not found<i class="caret blink"></i></span>
+				</span>
+			</h1>
+			<div class="body">
+				<p>There is nothing at this address.</p>
+				<a class="btn" href="/">Back to the start<span class="key" aria-hidden="true"><Icon name="enter" /></span></a>
+			</div>
+		</div>
+	</main>
+</Base>
+
+<style>
+	main {
+		padding-top: clamp(64px, 10cqw, 140px);
+		padding-bottom: 80px;
+	}
+
+	main:focus {
+		outline: none;
+	}
+
+	.in {
+		white-space: normal;
+	}
+
+	.body {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 20px;
+		padding: 26px 32px 30px;
+		border-top: 1px solid var(--line);
+		background: var(--low);
+	}
+
+	p {
+		font-size: 18px;
+		color: var(--soft);
+	}
+
+	@container (max-width: 700px) {
+		.in {
+			padding: 24px 18px 22px;
+			font-size: 9cqw;
+		}
+
+		.body {
+			padding: 20px 18px 22px;
+		}
+	}
+</style>
