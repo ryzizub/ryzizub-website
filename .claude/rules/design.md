@@ -29,7 +29,8 @@ first and the board after, or ask; never let them drift silently.
   they are used; everything else stays an Astro component and ships no
   JavaScript. Static use of a React component (icons) needs no `client:`.
 - Motion: the palette types once and rests; nothing loops that is not a
-  drawing, except the logo belt on phones, which has a pause control.
-  Everything stops under `prefers-reduced-motion`.
+  drawing, except the logo belt on phones, which pauses on hover and on a
+  control that shows on keyboard focus. Everything stops under
+  `prefers-reduced-motion`.
 - Touch targets at least 44 px, visible focus, text contrast 4.5:1.
   `npm run a11y` must report no violations.

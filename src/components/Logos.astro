@@ -103,7 +103,11 @@ const LABEL = 'Teams, communities and stages';
 		white-space: nowrap;
 	}
 
-	/* The pause control: a 44px target around an 18px icon, the label row keeps its height. */
+	/*
+	 * The pause control: a 44px target around an 18px icon, the label row keeps its
+	 * height. Screen readers always reach it; on screen it stays clipped away (and
+	 * untappable) until a keyboard focuses it, and stays while the belt is paused.
+	 */
 	.hold {
 		position: relative;
 		place-items: center;
@@ -113,6 +117,12 @@ const LABEL = 'Teams, communities and stages';
 		border-radius: 12px;
 		color: var(--mut);
 		cursor: pointer;
+		clip-path: inset(50%);
+	}
+
+	.hold:has(input:focus-visible),
+	.hold:has(input:checked) {
+		clip-path: none;
 	}
 
 	.hold:hover {
@@ -162,8 +172,8 @@ const LABEL = 'Teams, communities and stages';
 	/*
 	 * On phones the strip is one row that runs on its own, edge to edge, fading at
 	 * both ends. Two copies side by side move by half their width, so the loop has
-	 * no seam. It pauses on the control, on hover, and never runs under reduced motion,
-	 * where the chips wrap as they do on wider screens.
+	 * no seam. It pauses on hover and on the control, and never runs under reduced
+	 * motion, where the chips wrap as they do on wider screens.
 	 */
 	@media (prefers-reduced-motion: no-preference) {
 		@container (max-width: 520px) {
