@@ -1,5 +1,5 @@
 # Stage 1: Build the application
-FROM node:24 AS build-stage
+FROM node:25 AS build-stage
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
