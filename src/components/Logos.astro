@@ -81,7 +81,9 @@ const logos = (await getCollection('logos')).sort((a, b) => a.data.order - b.dat
 			gap: 8px;
 		}
 
+		/* Chips grow to fill each row, so the strip has an even right edge. */
 		.lg {
+			flex: 1 1 auto;
 			height: 44px;
 			padding: 0 12px;
 		}
