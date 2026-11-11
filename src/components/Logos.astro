@@ -1,33 +1,49 @@
 ---
 import { getCollection } from 'astro:content';
 import { asset } from '../lib/assets';
+import Icon from './Icon';
 
 const logos = (await getCollection('logos')).sort((a, b) => a.data.order - b.data.order).map((entry) => entry.data);
+const LABEL = 'Teams, communities and stages';
 ---
 
 <div class="logos w">
-	<p class="label"><span class="o">#</span> teams, communities and stages</p>
-	<ul class="lgs" aria-label="Teams, communities and stages">
-		{
-			logos.map((logo) => {
-				const image = asset(logo.file);
-				return (
-					<li class="lg">
-						<img
-							class:list={{ mono: logo.mono }}
-							src={image.src}
-							height={logo.height}
-							width={Math.round((logo.height * image.width) / image.height)}
-							alt={logo.text ? '' : logo.name}
-							loading="lazy"
-							decoding="async"
-						/>
-						{logo.text && <b>{logo.text}</b>}
-					</li>
-				);
-			})
-		}
-	</ul>
+	<div class="head">
+		<p class="label"><span class="o">#</span> teams, communities and stages</p>
+		<label class="hold">
+			<input class="sr" type="checkbox" aria-label="Pause the logos" />
+			<Icon name="pause" className="ico pause" />
+			<Icon name="play" className="ico play" />
+		</label>
+	</div>
+	<div class="belt">
+		<div class="track">
+			{
+				/* The second copy only shows on phones, where the strip is a belt: it closes the loop. */
+				[false, true].map((copy) => (
+					<ul class:list={['lgs', { dup: copy }]} aria-label={copy ? undefined : LABEL} aria-hidden={copy ? 'true' : undefined}>
+						{logos.map((logo) => {
+							const image = asset(logo.file);
+							return (
+								<li class="lg">
+									<img
+										class:list={{ mono: logo.mono }}
+										src={image.src}
+										height={logo.height}
+										width={Math.round((logo.height * image.width) / image.height)}
+										alt={logo.text || copy ? '' : logo.name}
+										loading="lazy"
+										decoding="async"
+									/>
+									{logo.text && <b>{logo.text}</b>}
+								</li>
+							);
+						})}
+					</ul>
+				))
+			}
+		</div>
+	</div>
 </div>
 
 <style>
@@ -35,8 +51,14 @@ const logos = (await getCollection('logos')).sort((a, b) => a.data.order - b.dat
 		margin-top: clamp(56px, 6cqw, 80px);
 	}
 
-	.label {
+	.head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 		margin-bottom: 14px;
+	}
+
+	.label {
 		font-family: var(--mono);
 		font-size: 13.5px;
 		color: var(--mut);
@@ -46,6 +68,11 @@ const logos = (await getCollection('logos')).sort((a, b) => a.data.order - b.dat
 		display: flex;
 		flex-wrap: wrap;
 		gap: 10px;
+	}
+
+	.dup,
+	.hold {
+		display: none;
 	}
 
 	/* Every logo on the same dark chip; logos drawn for light backgrounds are shown in white. */
@@ -76,6 +103,43 @@ const logos = (await getCollection('logos')).sort((a, b) => a.data.order - b.dat
 		white-space: nowrap;
 	}
 
+	/* The pause control: a 44px target around an 18px icon, the label row keeps its height. */
+	.hold {
+		position: relative;
+		place-items: center;
+		width: 44px;
+		height: 44px;
+		margin: -12px -12px -12px 0;
+		border-radius: 12px;
+		color: var(--mut);
+		cursor: pointer;
+	}
+
+	.hold:hover {
+		color: var(--ink);
+	}
+
+	.hold:has(input:focus-visible) {
+		outline: 2px solid var(--acc);
+		outline-offset: -4px;
+	}
+
+	/* The icons are React-rendered, so they carry no scope attribute: reach them with :global. */
+	.hold :global(svg) {
+		grid-area: 1 / 1;
+		width: 18px;
+		height: 18px;
+	}
+
+	.hold :global(.play),
+	.hold:has(input:checked) :global(.pause) {
+		display: none;
+	}
+
+	.hold:has(input:checked) :global(.play) {
+		display: block;
+	}
+
 	@container (max-width: 520px) {
 		.lgs {
 			gap: 8px;
@@ -92,6 +156,56 @@ const logos = (await getCollection('logos')).sort((a, b) => a.data.order - b.dat
 
 		.lg b {
 			font-size: 15px;
+		}
+	}
+
+	/*
+	 * On phones the strip is one row that runs on its own, edge to edge, fading at
+	 * both ends. Two copies side by side move by half their width, so the loop has
+	 * no seam. It pauses on the control, on hover, and never runs under reduced motion,
+	 * where the chips wrap as they do on wider screens.
+	 */
+	@media (prefers-reduced-motion: no-preference) {
+		@container (max-width: 520px) {
+			.hold {
+				display: grid;
+			}
+
+			.belt {
+				margin-inline: calc(-1 * var(--gutter));
+				overflow: hidden;
+				mask-image: linear-gradient(90deg, transparent, black 32px, black calc(100% - 32px), transparent);
+			}
+
+			.track {
+				display: flex;
+				width: max-content;
+				animation: logo-belt 40s linear infinite;
+			}
+
+			.lgs {
+				flex-wrap: nowrap;
+				padding-inline-end: 8px;
+			}
+
+			.lg {
+				flex: none;
+			}
+
+			.dup {
+				display: flex;
+			}
+
+			.belt:hover .track,
+			.logos:has(.hold input:checked) .track {
+				animation-play-state: paused;
+			}
+		}
+	}
+
+	@keyframes logo-belt {
+		to {
+			transform: translateX(-50%);
 		}
 	}
 </style>

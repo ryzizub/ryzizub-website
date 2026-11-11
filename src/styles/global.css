@@ -22,6 +22,8 @@
 	--light-ink: #454b54;
 	--mono: var(--font-mono), ui-monospace, monospace;
 	--sans: var(--font-sans), system-ui, sans-serif;
+	/* Side padding of the content column; cqw resolves against the page container where it is used. */
+	--gutter: max(20px, 3.125cqw);
 	color-scheme: dark;
 }
 
@@ -94,7 +96,7 @@ button {
 .w {
 	max-width: 1120px;
 	margin: 0 auto;
-	padding-inline: max(20px, 3.125cqw);
+	padding-inline: var(--gutter);
 }
 
 .sec {
