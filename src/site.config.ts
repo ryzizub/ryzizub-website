@@ -15,6 +15,10 @@ const config = {
 		email: 'dominik@simonik.me',
 		/** Approved public claim. Never an exact talk count. */
 		talks: '50+',
+		gde: 'Flutter & Firebase GDE',
+		community: 'DevFest.cz organizer',
+		/** For search engines and the structured data. */
+		knowsAbout: ['Flutter', 'Dart', 'Firebase', 'Node.js', 'Google Cloud', 'Astro', 'AI agents'],
 	},
 	site: {
 		url: 'https://ryzizub.com',
@@ -22,6 +26,10 @@ const config = {
 		description:
 			'Technical Delivery Lead at Very Good Ventures, Flutter & Firebase GDE, DevFest.cz organizer and a speaker with 50+ talks. Mobile apps, websites, backends and AI tooling.',
 		locale: 'en',
+		/** Open Graph locale. */
+		ogLocale: 'en_US',
+		/** The share image, rendered at build time by src/pages/og.png.ts. */
+		ogImage: { path: '/og.png', width: 1200, height: 630 },
 	},
 	/** In the order the contact block lists them. */
 	links: [

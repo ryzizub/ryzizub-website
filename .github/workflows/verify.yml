@@ -75,11 +75,15 @@ jobs:
           docker logs site
           exit 1
 
-      - name: The page, the 404 page, caching and headers
+      - name: The page, the 404 page, sharing, caching and headers
         run: |
           set -eu
           base=http://localhost:8480
           curl --fail --silent --show-error "$base/" | grep --quiet '/build'
+          curl --fail --silent "$base/" | grep --quiet 'property="og:image"'
+          curl --fail --silent --head "$base/og.png" | grep --quiet --ignore-case '^content-type: image/png'
+          curl --fail --silent "$base/robots.txt" | grep --quiet '^Sitemap: '
+          curl --fail --silent "$base/llms.txt" | grep --quiet '^# '
           test "$(curl --silent --output /dev/null --write-out '%{http_code}' "$base/no-such-page")" = 404
           curl --silent "$base/no-such-page" | grep --quiet '/404'
           curl --silent --head "$base/" | grep --quiet --ignore-case '^x-content-type-options: nosniff'

@@ -5,8 +5,9 @@ dist
 build
 web
 
-# Local tooling and editor state.
+# Local tooling and editor state, and repo-only files.
 .git
+.github
 .claude
 .dart_tool
 .impeccable
