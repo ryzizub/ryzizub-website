@@ -13,6 +13,7 @@ The personal site of Dominik Šimoník, a mobile developer who ships. One static
 - **React 19 islands** for the two interactive parts (the `/build` palette, the apps launcher), styled with CSS Modules; everything else is Astro and ships no JavaScript
 - **TypeScript** everywhere, strict
 - **Content in JSON**, validated by Astro content collections
+- **Images** sized for where they are shown: PNG and JPEG become WebP at 1×, 2× and 3× at build time (`sized()` in `src/lib/assets.ts`); SVGs ship as they are
 - **Share image** rendered at build time with [satori](https://github.com/vercel/satori) and resvg
 - **nginx in Docker** in production
 
@@ -86,7 +87,7 @@ Agents: `CLAUDE.md` and the path-scoped rules in `.claude/rules/`.
 
 ## Deploy
 
-`Dockerfile` builds the site and serves `dist/` with nginx (`nginx.conf`: the 404 page, security headers, a year of caching for `/_astro/`).
+`Dockerfile` builds the site and serves `dist/` with nginx (`nginx.conf`: the 404 page, security headers, gzip at level 6, a year of caching for `/_astro/`).
 
 ```bash
 docker compose up --build
