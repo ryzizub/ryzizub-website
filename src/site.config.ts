@@ -52,6 +52,10 @@ const config = {
 			title: 'Shipped apps.',
 			intro: "Mobile apps I've built as CTO, co-founder and volunteer, and for clients at Very Good Ventures.",
 		},
+		websites: {
+			title: 'Websites I build.',
+			intro: 'Next to the apps, I build websites in my free time.',
+		},
 		quests: {
 			title: 'Running after hours.',
 			intro: 'In my free time I build my own apps and odd experiments, because building something is the fastest way I know to learn it.',

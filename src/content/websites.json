@@ -1,0 +1,26 @@
+[
+	{
+		"id": "devfest",
+		"order": 1,
+		"name": "DevFest.cz",
+		"description": "Website for DevFest.cz 2026. I built it on my own, as part of the volunteer organizing team.",
+		"href": "https://devfest.cz/2026",
+		"screenshot": "devfest.jpg"
+	},
+	{
+		"id": "seniortaxi",
+		"order": 2,
+		"name": "Senior Taxi Ostrava",
+		"description": "A taxi service for seniors in Ostrava and the surrounding area.",
+		"href": "https://seniortaxiostrava.com/",
+		"screenshot": "seniortaxi.jpg"
+	},
+	{
+		"id": "petraherotova",
+		"order": 3,
+		"name": "Petra Herotová",
+		"description": "Website of the artist.",
+		"href": "https://petraherotova.com/",
+		"screenshot": "petraherotova.jpg"
+	}
+]

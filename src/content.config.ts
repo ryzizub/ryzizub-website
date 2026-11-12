@@ -4,7 +4,7 @@ import { file } from 'astro/loaders';
 import { ICONS } from './lib/icons';
 
 const icon = z.enum(Object.keys(ICONS) as [keyof typeof ICONS, ...(keyof typeof ICONS)[]]);
-/** A file name in src/assets/logos or src/assets/apps, without the folder. src/lib/assets.ts fails the build on a typo. */
+/** A file name in src/assets/logos, src/assets/apps or src/assets/sites, without the folder. src/lib/assets.ts fails the build on a typo. */
 const asset = z.string();
 
 // What the /build palette lists. `arg` is what the input types, `hint` the short tag.
@@ -47,6 +47,19 @@ const apps = defineCollection({
 		/** The icon is drawn for a dark tile. */
 		dark: z.boolean().default(false),
 		nda: z.boolean().default(false),
+	}),
+});
+
+// Websites he builds, shown with a screenshot of the live site.
+const websites = defineCollection({
+	loader: file('src/content/websites.json'),
+	schema: z.object({
+		order: z.number().int(),
+		name: z.string(),
+		description: z.string(),
+		href: z.url(),
+		/** A 1280×800 screenshot of the top of the site, in src/assets/sites. */
+		screenshot: asset,
 	}),
 });
 
@@ -99,4 +112,4 @@ const logos = defineCollection({
 	}),
 });
 
-export const collections = { builds, credentials, apps, quests, talks, logos };
+export const collections = { builds, credentials, apps, websites, quests, talks, logos };
