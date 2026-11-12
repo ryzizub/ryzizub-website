@@ -58,7 +58,7 @@ const config = {
 		},
 		talks: {
 			title: 'Talks and articles.',
-			intro: '50+ talks on Flutter, Firebase and AI agents, and the write-ups that go with them.',
+			intro: '50+ talks on Flutter, Firebase and AI agents, and the write-ups that go with them. Want me to speak at your event? Email me.',
 		},
 		contact: {
 			title: 'Building something? Say hi',
@@ -67,7 +67,7 @@ const config = {
 	speaking: {
 		/** In person, from the GDE activity export (Identity page, section 8c). */
 		countries: ['Czechia', 'Germany', 'USA', 'Italy', 'Croatia', 'Poland', 'Morocco'],
-		stages: 'FlutterCon USA, FlutterCon Europe, mDevCamp, DevFest.cz and DevFests in Casablanca, Pisa, Zagreb and Gela.',
+		stages: 'FlutterCon USA, FlutterCon Europe, mDevCamp, DevFest.cz, DevFests in Casablanca, Pisa, Zagreb and Gela, and Flutter on Air.',
 	},
 } as const;
 

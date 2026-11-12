@@ -1,7 +1,18 @@
 [
 	{
-		"id": "ai-printer-go-brrr",
+		"id": "flutter-3-50-dart-3-14",
 		"order": 1,
+		"kind": "article",
+		"title": "Flutter 3.50 and Dart 3.14: Why This Release Is a Big Deal",
+		"note": "On the Very Good Ventures blog",
+		"meta": "Article · 11 Nov 2026",
+		"href": "https://verygood.ventures/blog/flutter-3-50-dart-3-14/",
+		"logo": "vgv-logo.svg",
+		"logoHeight": 56
+	},
+	{
+		"id": "ai-printer-go-brrr",
+		"order": 2,
 		"kind": "talk",
 		"title": "AI Printer go brrr",
 		"note": "With Denis Valášek, about the AI sticker printer he built",
@@ -12,7 +23,7 @@
 	},
 	{
 		"id": "best-practices-on-autopilot",
-		"order": 2,
+		"order": 3,
 		"kind": "talk",
 		"title": "Best Practices on Autopilot: How the Very Good AI Flutter Plugin Makes AI Write Code Your Way",
 		"note": "With Rui Alonso and Jorge Coca",
@@ -22,8 +33,19 @@
 		"logoMono": true
 	},
 	{
+		"id": "vgv-ai-ecosystem",
+		"order": 4,
+		"kind": "talk",
+		"title": "VGV's AI Ecosystem: Building an Integrated AI-Powered Development Stack for not just Flutter Teams",
+		"note": "With Very Good Ventures colleagues",
+		"meta": "FlutterCon Europe · 7 Oct 2026",
+		"logo": "fluttercon.png",
+		"logoHeight": 38,
+		"logoMono": true
+	},
+	{
 		"id": "flutter-pigeon",
-		"order": 3,
+		"order": 5,
 		"kind": "article",
 		"title": "Flutter Pigeon: Type-Safe Platform Channels in Production",
 		"note": "On the Very Good Ventures blog",
@@ -33,8 +55,19 @@
 		"logoHeight": 56
 	},
 	{
+		"id": "integrated-ai-stack",
+		"order": 6,
+		"kind": "talk",
+		"title": "Building an Integrated AI-Powered Development Stack",
+		"note": "With Very Good Ventures colleagues",
+		"meta": "FlutterCon USA · 16 Jul 2026",
+		"logo": "fluttercon.png",
+		"logoHeight": 38,
+		"logoMono": true
+	},
+	{
 		"id": "viral-video-feed",
-		"order": 4,
+		"order": 7,
 		"kind": "talk",
 		"title": "Building a Production Viral Video Feed in Flutter",
 		"note": "With Hugo Walbecq",
@@ -45,7 +78,7 @@
 	},
 	{
 		"id": "observable-flutter-92",
-		"order": 5,
+		"order": 8,
 		"kind": "video",
 		"title": "VGV's AI toolkit",
 		"note": "Observable Flutter #92, with Oscar Martin, hosted by Craig Labenz",
@@ -57,7 +90,7 @@
 	},
 	{
 		"id": "rag-genkit-firebase",
-		"order": 6,
+		"order": 9,
 		"kind": "article",
 		"title": "Set up RAG with Genkit and Firebase in 15 minutes",
 		"note": "With Denis Valášek, on dev.to",
@@ -69,7 +102,7 @@
 	},
 	{
 		"id": "scrollviews",
-		"order": 7,
+		"order": 10,
 		"kind": "talk",
 		"title": "Under the Hood of ScrollViews",
 		"note": "FlutterCon Europe and mDevCamp",
