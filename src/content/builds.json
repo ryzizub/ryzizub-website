@@ -13,7 +13,7 @@
 		"order": 2,
 		"title": "Websites",
 		"arg": "websites",
-		"description": "Like this one, built with Astro.",
+		"description": "This one is built with Astro. I also build seniortaxiostrava.com, a taxi service for seniors in Ostrava, and petraherotova.com, the website of the artist Petra Herotová.",
 		"hint": "Astro",
 		"icon": "web"
 	},
@@ -31,7 +31,7 @@
 		"order": 4,
 		"title": "AI tooling",
 		"arg": "AI tooling",
-		"description": "Open-source tooling that teaches coding agents a team's standards.",
+		"description": "Wingspan, the Very Good AI Flutter Plugin and the VGV AI CLI: open-source tooling that sets up coding agents with a team's standards.",
 		"hint": "Open source",
 		"icon": "code"
 	},
