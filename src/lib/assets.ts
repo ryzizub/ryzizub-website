@@ -2,8 +2,8 @@ import type { ImageMetadata } from 'astro';
 import { getImage } from 'astro:assets';
 import type { ImageData } from '../components/AppIcon';
 
-// Logos and app icons, looked up by file name from the content JSON.
-const files = import.meta.glob<{ default: ImageMetadata }>('../assets/{logos,apps}/*.{svg,png}', { eager: true });
+// Logos, app icons and site screenshots, looked up by file name from the content JSON.
+const files = import.meta.glob<{ default: ImageMetadata }>('../assets/{logos,apps,sites}/*.{svg,png,jpg}', { eager: true });
 
 const byName = new Map<string, ImageMetadata>();
 for (const [path, mod] of Object.entries(files)) {
@@ -12,7 +12,7 @@ for (const [path, mod] of Object.entries(files)) {
 
 export function asset(name: string): ImageMetadata {
 	const image = byName.get(name);
-	if (!image) throw new Error(`No asset "${name}" in src/assets/logos or src/assets/apps`);
+	if (!image) throw new Error(`No asset "${name}" in src/assets/logos, src/assets/apps or src/assets/sites`);
 	return image;
 }
 

@@ -1,0 +1,144 @@
+---
+import { getCollection } from 'astro:content';
+import config from '../site.config';
+import { sized } from '../lib/assets';
+import Icon from './Icon';
+import SectionHead from './SectionHead.astro';
+
+// Screenshots are drawn for the widest card, one column on a tablet: 640 px.
+const websites = await Promise.all(
+	(await getCollection('websites'))
+		.sort((a, b) => a.data.order - b.data.order)
+		.map(async ({ data }) => {
+			const url = new URL(data.href);
+			return { ...data, address: (url.host + url.pathname).replace(/\/$/, ''), image: await sized(data.screenshot, { width: 640 }) };
+		}),
+);
+const { title, intro } = config.sections.websites;
+---
+
+<section id="websites" class="sec w">
+	<SectionHead command="/websites" title={title} intro={intro} />
+	<ul class="wg">
+		{
+			websites.map((site) => (
+				<li>
+					<a class="wc" href={site.href}>
+						<span class="shot" aria-hidden="true">
+							<img
+								src={site.image.src}
+								srcset={site.image.srcset}
+								width={site.image.width}
+								height={site.image.height}
+								alt=""
+								loading="lazy"
+								decoding="async"
+							/>
+						</span>
+						<span class="ad">{site.address}</span>
+						<b>{site.name}</b>
+						<em>{site.description}</em>
+						<span class="go" aria-hidden="true">
+							<Icon name="arrow" />
+						</span>
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</section>
+
+<style>
+	.wg {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 20px;
+	}
+
+	.wc {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		height: 100%;
+		padding: 0 22px 20px;
+		border: 1px solid var(--line);
+		border-radius: 22px;
+		background: var(--pan);
+		color: var(--ink);
+		overflow: hidden;
+		transition:
+			border-color 0.18s,
+			transform 0.25s cubic-bezier(0.2, 1, 0.3, 1);
+	}
+
+	.wc:hover {
+		border-color: var(--edge);
+		color: var(--ink);
+		transform: translateY(-2px);
+	}
+
+	/* The top of the live site, edge to edge, as the card's preview. */
+	.shot {
+		display: block;
+		margin: 0 -22px 16px;
+		border-bottom: 1px solid var(--line);
+		background: var(--low);
+		aspect-ratio: 16 / 10;
+		overflow: hidden;
+	}
+
+	.shot img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: top;
+		transition: transform 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+	}
+
+	.wc:hover .shot img {
+		transform: scale(1.03);
+	}
+
+	.ad {
+		margin-bottom: 8px;
+		font-family: var(--mono);
+		font-size: 12.5px;
+		color: var(--mut);
+	}
+
+	.wc b {
+		font-size: 18px;
+		font-weight: 600;
+		line-height: 1.3;
+		letter-spacing: -0.01em;
+	}
+
+	.wc em {
+		font-size: 14.5px;
+		font-style: normal;
+		line-height: 1.4;
+		color: var(--mut);
+	}
+
+	.go {
+		margin-top: auto;
+		padding-top: 10px;
+		align-self: flex-end;
+		transition: transform 0.18s;
+	}
+
+	.wc:hover .go {
+		color: var(--acc);
+		transform: translateX(3px);
+	}
+
+	@container (max-width: 700px) {
+		.wg {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		.ad {
+			font-size: 13px;
+		}
+	}
+</style>
