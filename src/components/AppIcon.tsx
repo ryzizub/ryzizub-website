@@ -3,6 +3,8 @@ import styles from './AppIcon.module.css';
 /** What an island needs to draw an image: resolved in Astro, passed as plain data. */
 export interface ImageData {
 	src: string;
+	/** The same image for denser screens, when there is one. */
+	srcset?: string;
 	width: number;
 	height: number;
 }
@@ -22,7 +24,7 @@ export default function AppIcon({ image, padded = false, dark = false, className
 	const classes = [styles.tile, padded && styles.padded, dark && styles.dark, className].filter(Boolean).join(' ');
 	return (
 		<span className={classes} aria-hidden="true">
-			<img src={image.src} width={image.width} height={image.height} alt="" loading="lazy" decoding="async" />
+			<img src={image.src} srcSet={image.srcset} width={image.width} height={image.height} alt="" loading="lazy" decoding="async" />
 		</span>
 	);
 }

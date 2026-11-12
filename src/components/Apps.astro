@@ -1,13 +1,16 @@
 ---
 import { getCollection } from 'astro:content';
 import config from '../site.config';
-import { imageData } from '../lib/assets';
+import { sized } from '../lib/assets';
 import AppLauncher from './AppLauncher';
 import SectionHead from './SectionHead.astro';
 
-const apps = (await getCollection('apps'))
-	.sort((a, b) => a.data.order - b.data.order)
-	.map(({ data: { icon, order: _order, ...app } }) => ({ ...app, image: imageData(icon) }));
+// Icons are drawn for the largest place they show: the detail card, 96 px.
+const apps = await Promise.all(
+	(await getCollection('apps'))
+		.sort((a, b) => a.data.order - b.data.order)
+		.map(async ({ data: { icon, order: _order, ...app } }) => ({ ...app, image: await sized(icon, { width: 96 }) })),
+);
 const { title, intro } = config.sections.apps;
 ---
 

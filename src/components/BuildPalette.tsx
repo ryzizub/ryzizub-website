@@ -19,7 +19,19 @@ interface Props {
 
 const TYPE_MS = 46;
 const HOLD_MS = 2600;
+/**
+ * The row a visitor lands on holds longer: it is read first, and the hero
+ * stays still while the rest of the page loads (Lighthouse's Speed Index
+ * counts a hero that moves during load as a page not done).
+ */
+const FIRST_HOLD_MS = 5000;
 const NEXT_ROW_MS = 240;
+
+/** How long the palette waits before its next step. */
+function stepDelay(shown: number, full: number, first: boolean): number {
+	if (shown === full) return first ? FIRST_HOLD_MS : HOLD_MS;
+	return shown === 0 ? NEXT_ROW_MS : TYPE_MS;
+}
 
 /**
  * The hero: a command palette. It types through what he builds once, then
@@ -52,7 +64,7 @@ export default function BuildPalette({ builds, contactHref }: Props) {
 					setTyped(0);
 				}
 			},
-			shown === full ? HOLD_MS : shown === 0 ? NEXT_ROW_MS : TYPE_MS,
+			stepDelay(shown, full, selected === 0),
 		);
 		return () => window.clearTimeout(timer);
 	}, [typing, selected, typed, builds]);

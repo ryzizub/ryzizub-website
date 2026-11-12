@@ -1,9 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
-import { asset } from '../lib/assets';
+import { sized } from '../lib/assets';
 import Icon from './Icon';
 
-const logos = (await getCollection('logos')).sort((a, b) => a.data.order - b.data.order).map((entry) => entry.data);
+const logos = await Promise.all(
+	(await getCollection('logos'))
+		.sort((a, b) => a.data.order - b.data.order)
+		.map(async ({ data }) => ({ ...data, image: await sized(data.file, { height: data.height }) })),
+);
 const LABEL = 'Teams, communities and stages';
 ---
 
@@ -22,23 +26,21 @@ const LABEL = 'Teams, communities and stages';
 				/* The second copy only shows on phones, where the strip is a belt: it closes the loop. */
 				[false, true].map((copy) => (
 					<ul class:list={['lgs', { dup: copy }]} aria-label={copy ? undefined : LABEL} aria-hidden={copy ? 'true' : undefined}>
-						{logos.map((logo) => {
-							const image = asset(logo.file);
-							return (
-								<li class="lg">
-									<img
-										class:list={{ mono: logo.mono }}
-										src={image.src}
-										height={logo.height}
-										width={Math.round((logo.height * image.width) / image.height)}
-										alt={logo.text || copy ? '' : logo.name}
-										loading="lazy"
-										decoding="async"
-									/>
-									{logo.text && <b>{logo.text}</b>}
-								</li>
-							);
-						})}
+						{logos.map((logo) => (
+							<li class="lg">
+								<img
+									class:list={{ mono: logo.mono }}
+									src={logo.image.src}
+									srcset={logo.image.srcset}
+									height={logo.image.height}
+									width={logo.image.width}
+									alt={logo.text || copy ? '' : logo.name}
+									loading="lazy"
+									decoding="async"
+								/>
+								{logo.text && <b>{logo.text}</b>}
+							</li>
+						))}
 					</ul>
 				))
 			}

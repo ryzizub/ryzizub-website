@@ -1,12 +1,16 @@
 ---
 import { getCollection } from 'astro:content';
 import config from '../site.config';
-import { asset } from '../lib/assets';
+import { sized } from '../lib/assets';
 import type { IconName } from '../lib/icons';
 import Icon from './Icon';
 import SectionHead from './SectionHead.astro';
 
-const talks = (await getCollection('talks')).sort((a, b) => a.data.order - b.data.order).map((entry) => entry.data);
+const talks = await Promise.all(
+	(await getCollection('talks'))
+		.sort((a, b) => a.data.order - b.data.order)
+		.map(async ({ data }) => ({ ...data, image: await sized(data.logo, { height: data.logoHeight }) })),
+);
 const { title, intro } = config.sections.talks;
 const { countries, stages } = config.speaking;
 const kinds: Record<'talk' | 'video' | 'article', { icon: IconName; label: string }> = {
@@ -21,16 +25,16 @@ const kinds: Record<'talk' | 'video' | 'article', { icon: IconName; label: strin
 	<div class="tg">
 		{
 			talks.map((talk) => {
-				const logo = asset(talk.logo);
 				const Tag = talk.href ? 'a' : 'div';
 				return (
 					<Tag class="tc" href={talk.href}>
 						<span class="pv" aria-hidden="true">
 							<img
 								class:list={{ mono: talk.logoMono }}
-								src={logo.src}
-								height={talk.logoHeight}
-								width={Math.round((talk.logoHeight * logo.width) / logo.height)}
+								src={talk.image.src}
+								srcset={talk.image.srcset}
+								height={talk.image.height}
+								width={talk.image.width}
 								alt=""
 								loading="lazy"
 								decoding="async"

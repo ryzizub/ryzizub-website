@@ -2,19 +2,28 @@
 import { getCollection } from 'astro:content';
 import config from '../site.config';
 import profile from '../assets/profile.jpeg';
-import { asset, imageData } from '../lib/assets';
+import { sized } from '../lib/assets';
 import AppIcon from './AppIcon';
 import Icon from './Icon';
 
 const byOrder = <T extends { data: { order: number } }>(a: T, b: T) => a.data.order - b.data.order;
-const credentials = (await getCollection('credentials')).sort(byOrder).map((entry) => entry.data);
-const apps = (await getCollection('apps')).sort(byOrder).map((entry) => entry.data);
+const credentials = await Promise.all(
+	(await getCollection('credentials'))
+		.sort(byOrder)
+		.map(async ({ data }) => ({ ...data, image: await sized(data.mark, { width: data.markWidth }) })),
+);
+// The folder's icons are at most 61 px wide.
+const apps = await Promise.all(
+	(await getCollection('apps')).sort(byOrder).map(async ({ data }) => ({ ...data, image: await sized(data.icon, { width: 64 }) })),
+);
+// The photo is the largest thing in the first view on a wide screen: it loads first.
+const photo = await sized(profile, { width: profile.width });
 const { person } = config;
 ---
 
 <div class="dock">
 	<figure class="wd photo">
-		<img src={profile.src} width={profile.width} height={profile.height} alt={person.name} />
+		<img src={photo.src} srcset={photo.srcset} width={photo.width} height={photo.height} alt={person.name} fetchpriority="high" />
 		<figcaption class="tag"><Icon name="pin" />{person.city}</figcaption>
 	</figure>
 
@@ -22,20 +31,17 @@ const { person } = config;
 		<p class="m">Credentials</p>
 		<ul>
 			{
-				credentials.map((credential) => {
-					const mark = asset(credential.mark);
-					return (
-						<li>
-							<span class="mk">
-								<img src={mark.src} width={credential.markWidth} height={Math.round((credential.markWidth * mark.height) / mark.width)} alt="" />
-							</span>
-							<span>
-								<b>{credential.title}</b>
-								<em>{credential.detail}</em>
-							</span>
-						</li>
-					);
-				})
+				credentials.map((credential) => (
+					<li>
+						<span class="mk">
+							<img src={credential.image.src} srcset={credential.image.srcset} width={credential.image.width} height={credential.image.height} alt="" />
+						</span>
+						<span>
+							<b>{credential.title}</b>
+							<em>{credential.detail}</em>
+						</span>
+					</li>
+				))
 			}
 		</ul>
 	</div>
@@ -52,7 +58,7 @@ const { person } = config;
 
 	<a class="wd folder" href="#apps">
 		<span class="ics" aria-hidden="true">
-			{apps.map((app) => <AppIcon image={imageData(app.icon)} padded={app.padded} dark={app.dark} className="ic" />)}
+			{apps.map((app) => <AppIcon image={app.image} padded={app.padded} dark={app.dark} className="ic" />)}
 		</span>
 		<span class="ft">
 			<span><b>Shipped</b><em>Clients, startups and communities</em></span>
