@@ -112,7 +112,13 @@ export default function BuildPalette({ builds, contactHref }: Props) {
 				</div>
 				<div className={styles.pane}>
 					<span className="chip">{current.hint}</span>
-					<p className={styles.description}>{current.description}</p>
+					<div className={styles.descriptions}>
+						{builds.map((build, index) => (
+							<p key={build.arg} className={index === selected ? `${styles.description} ${styles.shown}` : styles.description}>
+								{build.description}
+							</p>
+						))}
+					</div>
 					<a className={`btn ${styles.cta}`} href={contactHref}>
 						Contact me
 						<span className="key" aria-hidden="true">

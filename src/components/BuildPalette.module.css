@@ -75,11 +75,22 @@
 	background: var(--low);
 }
 
+/* Every description sits in one cell, so the pane is as tall as the longest
+   one and the page below stays put while the palette cycles. */
+.descriptions {
+	display: grid;
+}
+
 .description {
+	grid-area: 1 / 1;
 	max-width: 26em;
 	font-size: 22px;
 	line-height: 1.45;
 	letter-spacing: -0.01em;
+}
+
+.description:not(.shown) {
+	visibility: hidden;
 }
 
 .cta {
@@ -125,7 +136,6 @@
 	}
 
 	.description {
-		min-height: 4.4em;
 		font-size: 18px;
 	}
 
