@@ -1,0 +1,67 @@
+.region {
+	position: fixed;
+	inset: auto 0 16px;
+	z-index: 20;
+	display: flex;
+	justify-content: center;
+	padding-inline: 16px;
+	pointer-events: none;
+}
+
+.toast {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 12px 20px;
+	max-width: 640px;
+	padding: 14px 16px 14px 20px;
+	border: 1px solid var(--line);
+	border-radius: 16px;
+	background: var(--pan);
+	box-shadow:
+		inset 0 1px 0 rgba(255, 255, 255, 0.08),
+		0 28px 44px -20px rgba(0, 0, 0, 0.85);
+	color: var(--soft);
+	pointer-events: auto;
+}
+
+.addr {
+	color: var(--ink);
+	font-family: var(--mono);
+	overflow-wrap: anywhere;
+}
+
+.actions {
+	display: flex;
+	gap: 8px;
+	margin-left: auto;
+}
+
+.copy,
+.close {
+	min-height: 44px;
+	padding: 0 16px;
+	border-radius: 10px;
+	font-family: var(--mono);
+	font-weight: 700;
+}
+
+.copy {
+	border: 0;
+	background: var(--acc);
+	color: var(--dark);
+}
+
+.copy:hover {
+	background: var(--acc-hi);
+}
+
+.close {
+	border: 1px solid var(--edge);
+	background: transparent;
+	color: var(--soft);
+}
+
+.close:hover {
+	color: var(--ink);
+}
