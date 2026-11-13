@@ -63,6 +63,30 @@ const websites = defineCollection({
 	}),
 });
 
+// The open-source AI tooling he maintains, each linking to its repo.
+const tooling = defineCollection({
+	loader: file('src/content/tooling.json'),
+	schema: z.object({
+		order: z.number().int(),
+		name: z.string(),
+		description: z.string(),
+		/** What it is, set in the mono: "Claude Code plugin", "CLI". */
+		kind: z.string(),
+		href: z.url(),
+	}),
+});
+
+// His work with AI, oldest first, one row per year.
+const milestones = defineCollection({
+	loader: file('src/content/milestones.json'),
+	schema: z.object({
+		order: z.number().int(),
+		year: z.string(),
+		title: z.string(),
+		detail: z.string(),
+	}),
+});
+
 const quests = defineCollection({
 	loader: file('src/content/quests.json'),
 	schema: z.object({
@@ -112,4 +136,4 @@ const logos = defineCollection({
 	}),
 });
 
-export const collections = { builds, credentials, apps, websites, quests, talks, logos };
+export const collections = { builds, credentials, apps, websites, tooling, milestones, quests, talks, logos };

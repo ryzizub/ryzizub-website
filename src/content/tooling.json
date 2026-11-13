@@ -1,0 +1,26 @@
+[
+	{
+		"id": "wingspan",
+		"order": 1,
+		"name": "Wingspan",
+		"description": "Takes a team and its coding agent through brainstorm, plan, build and review.",
+		"kind": "Claude Code plugin",
+		"href": "https://github.com/VeryGoodOpenSource/vgv-wingspan"
+	},
+	{
+		"id": "flutter-plugin",
+		"order": 2,
+		"name": "Very Good AI Flutter Plugin",
+		"description": "Teaches coding agents our Flutter and Dart standards: architecture, testing, accessibility, state management and more.",
+		"kind": "Claude Code plugin",
+		"href": "https://github.com/VeryGoodOpenSource/vgv-ai-flutter-plugin"
+	},
+	{
+		"id": "cli",
+		"order": 3,
+		"name": "VGV AI CLI",
+		"description": "Configures the Very Good AI tooling for your coding agents.",
+		"kind": "CLI",
+		"href": "https://github.com/VeryGoodOpenSource/vgv_ai_cli"
+	}
+]

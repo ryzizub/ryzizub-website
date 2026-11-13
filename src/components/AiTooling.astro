@@ -1,0 +1,259 @@
+---
+import { getCollection } from 'astro:content';
+import config from '../site.config';
+import Icon from './Icon';
+import SectionHead from './SectionHead.astro';
+
+const byOrder = <T extends { data: { order: number } }>(a: T, b: T) => a.data.order - b.data.order;
+const tools = (await getCollection('tooling')).sort(byOrder).map(({ data }) => {
+	const [owner, repo] = new URL(data.href).pathname.slice(1).split('/');
+	return { ...data, owner, repo };
+});
+const milestones = (await getCollection('milestones')).sort(byOrder).map(({ data }) => data);
+const { title, intro } = config.sections.ai;
+---
+
+<section id="ai" class="sec w">
+	<SectionHead command="/ai" title={title} intro={intro} />
+	<ul class="tg">
+		{
+			tools.map((tool) => (
+				<li>
+					<a class="tc" href={tool.href}>
+						<span class="hd">
+							<span class="ic" aria-hidden="true">
+								<Icon name="code" />
+							</span>
+							<span class="chip">{tool.kind}</span>
+						</span>
+						<b>{tool.name}</b>
+						<em>{tool.description}</em>
+						<span class="ft">
+							<span class="rp">
+								{tool.owner}/<wbr /><span class="nw">{tool.repo}</span>
+							</span>
+							<span class="go" aria-hidden="true">
+								<Icon name="arrow" />
+							</span>
+						</span>
+					</a>
+				</li>
+			))
+		}
+	</ul>
+	<div class="tr">
+		<h3>Track record</h3>
+		<ol>
+			{
+				milestones.map((milestone) => (
+					<li>
+						<span class="yr">{milestone.year}</span>
+						<b>{milestone.title}</b>
+						<span class="dt">{milestone.detail}</span>
+					</li>
+				))
+			}
+		</ol>
+	</div>
+</section>
+
+<style>
+	.tg {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 20px;
+	}
+
+	.tc {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		height: 100%;
+		padding: 22px 22px 20px;
+		border: 1px solid var(--line);
+		border-radius: 22px;
+		background: var(--pan);
+		color: var(--ink);
+		transition:
+			border-color 0.18s,
+			transform 0.25s cubic-bezier(0.2, 1, 0.3, 1);
+	}
+
+	.tc:hover {
+		border-color: var(--edge);
+		color: var(--ink);
+		transform: translateY(-2px);
+	}
+
+	.hd {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		margin-bottom: 14px;
+	}
+
+	.ic {
+		display: grid;
+		place-items: center;
+		width: 40px;
+		height: 40px;
+		border: 1px solid var(--line);
+		border-radius: 11px;
+		background: var(--tile);
+		color: var(--soft);
+	}
+
+	.ic :global(svg) {
+		width: 20px;
+		height: 20px;
+	}
+
+	.chip {
+		color: var(--soft);
+	}
+
+	.tc b {
+		font-size: 18px;
+		font-weight: 600;
+		line-height: 1.3;
+		letter-spacing: -0.01em;
+	}
+
+	.tc em {
+		font-size: 14.5px;
+		font-style: normal;
+		line-height: 1.4;
+		color: var(--mut);
+	}
+
+	.ft {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		margin-top: auto;
+		padding-top: 18px;
+	}
+
+	.rp {
+		min-width: 0;
+		font-family: var(--mono);
+		font-size: 12.5px;
+		color: var(--mut);
+		overflow-wrap: anywhere;
+	}
+
+	/* The repo name stays whole; the line breaks after the owner. */
+	.nw {
+		white-space: nowrap;
+	}
+
+	.go {
+		flex: none;
+		transition: transform 0.18s;
+	}
+
+	.tc:hover .go {
+		color: var(--acc);
+		transform: translateX(3px);
+	}
+
+	/* The years read left to right on a hairline, top to bottom on a phone. */
+	.tr {
+		margin-top: 20px;
+		padding: 24px 26px 28px;
+		border: 1px solid var(--line);
+		border-radius: 22px;
+		background: var(--pan);
+	}
+
+	h3 {
+		margin-bottom: 26px;
+		font-family: var(--mono);
+		font-size: 12px;
+		font-weight: 500;
+		letter-spacing: 0.09em;
+		text-transform: uppercase;
+		color: var(--mut);
+	}
+
+	ol {
+		display: grid;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+	}
+
+	ol li {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		padding: 22px 20px 0 0;
+		border-top: 1px solid var(--line);
+	}
+
+	ol li::before {
+		content: '';
+		position: absolute;
+		top: -5px;
+		left: 0;
+		width: 9px;
+		height: 9px;
+		border-radius: 50%;
+		background: var(--edge);
+	}
+
+	ol li:last-child::before {
+		background: var(--soft);
+	}
+
+	.yr {
+		font-family: var(--mono);
+		font-size: 13px;
+		font-variant-numeric: tabular-nums;
+		color: var(--soft);
+	}
+
+	ol b {
+		font-size: 16px;
+		font-weight: 600;
+		line-height: 1.3;
+	}
+
+	.dt {
+		font-size: 14.5px;
+		line-height: 1.45;
+		color: var(--mut);
+	}
+
+	@container (max-width: 900px) {
+		ol {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		ol li {
+			padding: 0 0 24px 26px;
+			border-top: 0;
+			border-left: 1px solid var(--line);
+		}
+
+		ol li:last-child {
+			padding-bottom: 0;
+		}
+
+		ol li::before {
+			top: 4px;
+			left: -5px;
+		}
+	}
+
+	@container (max-width: 700px) {
+		.tg {
+			grid-template-columns: minmax(0, 1fr);
+		}
+
+		.tr {
+			padding: 22px 20px 24px;
+		}
+	}
+</style>

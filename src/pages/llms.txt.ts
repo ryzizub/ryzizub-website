@@ -10,6 +10,8 @@ export const GET: APIRoute = async () => {
 	const { person, site, links, sections, speaking } = config;
 	const builds = sorted(await getCollection('builds'));
 	const apps = sorted(await getCollection('apps'));
+	const tooling = sorted(await getCollection('tooling'));
+	const milestones = sorted(await getCollection('milestones'));
 	const websites = sorted(await getCollection('websites'));
 	const quests = sorted(await getCollection('quests'));
 	const talks = sorted(await getCollection('talks'));
@@ -33,6 +35,16 @@ export const GET: APIRoute = async () => {
 		`## ${sections.apps.title.replace(/\.$/, '')}`,
 		'',
 		...apps.map((a) => `- ${a.name} (${a.role}, ${a.years}): ${a.description}`),
+		'',
+		`## ${sections.ai.title.replace(/\.$/, '')}`,
+		'',
+		sections.ai.intro,
+		'',
+		...tooling.map((t) => `- [${t.name}](${t.href}) (${t.kind}): ${t.description}`),
+		'',
+		'Track record:',
+		'',
+		...milestones.map((m) => `- ${m.year}, ${m.title}: ${m.detail}`),
 		'',
 		`## ${sections.websites.title.replace(/\.$/, '')}`,
 		'',
