@@ -43,7 +43,6 @@ const config = {
 	/** Sections, written like the commands that open them. */
 	nav: [
 		{ label: '/apps', href: '#apps' },
-		{ label: '/ai', href: '#ai' },
 		{ label: '/side-quests', href: '#quests' },
 		{ label: '/talks', href: '#talks' },
 		{ label: '/contact', href: '#contact' },
