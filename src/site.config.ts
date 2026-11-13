@@ -18,13 +18,13 @@ const config = {
 		gde: 'Flutter & Firebase GDE',
 		community: 'DevFest.cz organizer',
 		/** For search engines and the structured data. */
-		knowsAbout: ['Flutter', 'Dart', 'Firebase', 'Node.js', 'Google Cloud', 'Astro', 'AI agents'],
+		knowsAbout: ['Flutter', 'Dart', 'Firebase', 'AI agents', 'Claude Code', 'Genkit', 'Node.js', 'Google Cloud', 'Astro'],
 	},
 	site: {
 		url: 'https://ryzizub.com',
 		title: 'Dominik Šimoník · Mobile developer who ships',
 		description:
-			'Technical Delivery Lead at Very Good Ventures, Flutter & Firebase GDE, DevFest.cz organizer and a speaker with 50+ talks. Mobile apps, websites, backends and AI tooling.',
+			'Technical Delivery Lead at Very Good Ventures, Flutter & Firebase GDE, DevFest.cz organizer and a speaker with 50+ talks. Mobile apps, AI tooling, websites and backends.',
 		locale: 'en',
 		/** Open Graph locale. */
 		ogLocale: 'en_US',
@@ -43,6 +43,7 @@ const config = {
 	/** Sections, written like the commands that open them. */
 	nav: [
 		{ label: '/apps', href: '#apps' },
+		{ label: '/ai', href: '#ai' },
 		{ label: '/side-quests', href: '#quests' },
 		{ label: '/talks', href: '#talks' },
 		{ label: '/contact', href: '#contact' },
@@ -51,6 +52,10 @@ const config = {
 		apps: {
 			title: 'Shipped apps.',
 			intro: "Mobile apps I've built as CTO, co-founder and volunteer, and for clients at Very Good Ventures.",
+		},
+		ai: {
+			title: 'AI tooling I maintain.',
+			intro: "On Very Good Ventures' platform team I maintain our open-source AI tooling. It sets up coding agents with a team's standards.",
 		},
 		websites: {
 			title: 'Websites I build.',

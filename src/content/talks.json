@@ -101,8 +101,19 @@
 		"logoMono": true
 	},
 	{
-		"id": "scrollviews",
+		"id": "genkit-demo-to-production",
 		"order": 10,
+		"kind": "talk",
+		"title": "AI from demo to production with Firebase Genkit",
+		"note": "With Denis Valášek",
+		"meta": "DevFest.cz · 23 Oct 2025",
+		"logo": "gug.svg",
+		"logoHeight": 34,
+		"logoMono": true
+	},
+	{
+		"id": "scrollviews",
+		"order": 11,
 		"kind": "talk",
 		"title": "Under the Hood of ScrollViews",
 		"note": "FlutterCon Europe and mDevCamp",
@@ -111,5 +122,26 @@
 		"logo": "mdevcamp.svg",
 		"logoHeight": 34,
 		"logoText": "mDevCamp"
+	},
+	{
+		"id": "empowering-flutter-ai",
+		"order": 12,
+		"kind": "talk",
+		"title": "Empowering your Flutter app with AI",
+		"note": "DevFest Gela and GDG Wrocław",
+		"meta": "2024 – 2025",
+		"logo": "gdg.png",
+		"logoHeight": 24
+	},
+	{
+		"id": "genkit-devfest-croatia",
+		"order": 13,
+		"kind": "talk",
+		"title": "Unlocking Innovation with Firebase Genkit",
+		"note": "In Zagreb",
+		"meta": "DevFest Croatia · 25 Oct 2024",
+		"logo": "firebase.svg",
+		"logoHeight": 44,
+		"logoMono": true
 	}
 ]

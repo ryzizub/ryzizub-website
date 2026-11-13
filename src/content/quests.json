@@ -15,8 +15,8 @@
 		"name": "Path Compass",
 		"status": "MVP built",
 		"statusKind": "proto",
-		"description": "Reads where you stand and generates a guide with a live compass. GenUI beyond chat.",
-		"stack": ["Flutter", "Dart Genkit", "Cloud Run"],
+		"description": "Reads where you stand and has an LLM generate a guide with a live compass. GenUI beyond chat.",
+		"stack": ["Flutter", "Dart Genkit", "A2UI", "Cloud Run"],
 		"art": "compass"
 	}
 ]

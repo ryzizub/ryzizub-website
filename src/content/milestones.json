@@ -1,0 +1,37 @@
+[
+	{
+		"id": "yadada",
+		"order": 1,
+		"year": "2020",
+		"title": "AI products",
+		"detail": "Co-founded yadada. We built the AI products Copyhat and Rhetoro."
+	},
+	{
+		"id": "learnthis",
+		"order": 2,
+		"year": "2021",
+		"title": "GPT-3 at HackZurich",
+		"detail": "LearnThis, with Jan Antonín Kolář and Denis Valášek. I built the Flutter web app."
+	},
+	{
+		"id": "ai-in-apps",
+		"order": 3,
+		"year": "2024",
+		"title": "AI in Flutter apps",
+		"detail": "Talks on Firebase Genkit and AI in Flutter apps at DevFests in Zagreb and Gela."
+	},
+	{
+		"id": "genkit-production",
+		"order": 4,
+		"year": "2025",
+		"title": "Genkit in production",
+		"detail": "A DevFest.cz talk and a RAG article, both with Denis Valášek."
+	},
+	{
+		"id": "dev-workflow",
+		"order": 5,
+		"year": "2026",
+		"title": "AI in the dev workflow",
+		"detail": "The tooling above, talks at FlutterCon USA and Europe, and Claude Certified Architect."
+	}
+]

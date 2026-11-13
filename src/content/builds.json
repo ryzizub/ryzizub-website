@@ -9,8 +9,17 @@
 		"icon": "phone"
 	},
 	{
-		"id": "web",
+		"id": "ai",
 		"order": 2,
+		"title": "AI tooling",
+		"arg": "AI tooling",
+		"description": "Wingspan, the Very Good AI Flutter Plugin and the VGV AI CLI: open-source tooling that sets up coding agents with a team's standards.",
+		"hint": "Open source",
+		"icon": "code"
+	},
+	{
+		"id": "web",
+		"order": 3,
 		"title": "Websites",
 		"arg": "websites",
 		"description": "This one is built with Astro. I also build seniortaxiostrava.com, a taxi service for seniors in Ostrava, and petraherotova.com, the website of the artist Petra Herotová.",
@@ -19,21 +28,12 @@
 	},
 	{
 		"id": "backend",
-		"order": 3,
+		"order": 4,
 		"title": "Backends",
 		"arg": "backends",
 		"description": "Node.js services and Google Cloud solutions behind the apps.",
 		"hint": "Node.js · GCP",
 		"icon": "server"
-	},
-	{
-		"id": "ai",
-		"order": 4,
-		"title": "AI tooling",
-		"arg": "AI tooling",
-		"description": "Wingspan, the Very Good AI Flutter Plugin and the VGV AI CLI: open-source tooling that sets up coding agents with a team's standards.",
-		"hint": "Open source",
-		"icon": "code"
 	},
 	{
 		"id": "whole",
