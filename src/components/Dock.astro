@@ -17,7 +17,8 @@ const apps = await Promise.all(
 	(await getCollection('apps')).sort(byOrder).map(async ({ data }) => ({ ...data, image: await sized(data.icon, { width: 64 }) })),
 );
 // The photo is the largest thing in the first view on a wide screen: it loads first.
-const photo = await sized(profile, { width: profile.width });
+// Its tile covers at most 340 px on a side (two columns, just under 760 px wide).
+const photo = await sized(profile, { width: 340 });
 const { person } = config;
 ---
 
