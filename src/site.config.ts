@@ -40,6 +40,8 @@ const config = {
 		{ label: 'Instagram', href: 'https://www.instagram.com/ryzizub/' },
 	],
 	mastodon: 'https://mastodon.ryzizub.com/@ryzizub',
+	/** The CV PDF in public/. */
+	cv: '/cv.pdf',
 	/** Sections, written like the commands that open them. */
 	nav: [
 		{ label: '/apps', href: '#apps' },
