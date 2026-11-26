@@ -26,6 +26,8 @@ const HOLD_MS = 2600;
  */
 const FIRST_HOLD_MS = 5000;
 const NEXT_ROW_MS = 240;
+/** How long the palette rests untouched before it types through again. */
+const IDLE_MS = 30_000;
 
 /** How long the palette waits before its next step. */
 function stepDelay(shown: number, full: number, first: boolean): number {
@@ -34,19 +36,34 @@ function stepDelay(shown: number, full: number, first: boolean): number {
 }
 
 /**
- * The hero: a command palette. It types through what he builds once, then
- * rests on the first row. Picking a row stops the typing. No typing under
- * reduced motion.
+ * The hero: a command palette. It types through what he builds, then rests
+ * on the first row. Picking a row stops the typing. Left untouched for
+ * IDLE_MS, it types through again. No typing under reduced motion.
  */
 export default function BuildPalette({ builds, contactHref }: Props) {
 	const [selected, setSelected] = useState(0);
 	/** Letters of the argument shown; null means all of them. */
 	const [typed, setTyped] = useState<number | null>(null);
 	const [typing, setTyping] = useState(true);
+	const [motion, setMotion] = useState(true);
+	/** Counts picks, so picking the row already shown still restarts the idle wait. */
+	const [picks, setPicks] = useState(0);
 
 	useEffect(() => {
-		if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) setTyping(false);
+		if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+		setMotion(false);
+		setTyping(false);
 	}, []);
+
+	useEffect(() => {
+		if (!motion || typing) return undefined;
+		const timer = window.setTimeout(() => {
+			setSelected((selected + 1) % builds.length);
+			setTyped(0);
+			setTyping(true);
+		}, IDLE_MS);
+		return () => window.clearTimeout(timer);
+	}, [motion, typing, selected, picks, builds.length]);
 
 	useEffect(() => {
 		if (!typing) return undefined;
@@ -73,6 +90,7 @@ export default function BuildPalette({ builds, contactHref }: Props) {
 		setTyping(false);
 		setSelected(index);
 		setTyped(null);
+		setPicks((count) => count + 1);
 	};
 
 	const current = builds[selected];

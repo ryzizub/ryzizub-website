@@ -28,7 +28,8 @@ first and the board after, or ask; never let them drift silently.
 - Interactive parts are React islands (`.tsx` + `.module.css`) hydrated where
   they are used; everything else stays an Astro component and ships no
   JavaScript. Static use of a React component (icons) needs no `client:`.
-- Motion: the palette types once and rests; nothing loops that is not a
+- Motion: the palette types once and rests, and types through again after
+  30 s untouched; nothing else loops that is not a
   drawing, except the logo belt on phones, which pauses on hover and on a
   control that shows on keyboard focus. Everything stops under
   `prefers-reduced-motion`.
